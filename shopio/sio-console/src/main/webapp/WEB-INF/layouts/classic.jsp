@@ -9,6 +9,7 @@
 <link href="<c:url value="/css/bootstrap-4.4.1/bootstrap-glyphicons.css" />" rel="stylesheet">
 <link href="<c:url value="/css/style.css" />" rel="stylesheet">
 <script src="<c:url value="/js/jquery.min.js" />"></script>
+<script src="<c:url value="/css/bootstrap-4.4.1/popper.min.js" />"></script>
 <script src="<c:url value="/css/bootstrap-4.4.1/bootstrap.min.js" />"></script>
 </head>
 

@@ -18,7 +18,7 @@ html, body, .web-container, .row {
 	overflow-y: scroll;
 }
 
-.web-container .left-side .title {
+.web-container .left-side .web-name {
 	color: #9AA6AF;
 	text-align: center;
 	height: 35px;
@@ -35,8 +35,12 @@ html, body, .web-container, .row {
 	padding: 0px;
 }
 
-.profile .name {
+.profile .web-name {
 	color: #9AA6AF;
+}
+
+.profile .name {
+	color: #AAAAAA;
 }
 
 .profile .avata {
@@ -51,4 +55,80 @@ html, body, .web-container, .row {
 	width: 70%;
 	height: 80%;
 	object-fit: contain;
+}
+
+.navigation .title {
+	height: 35px;
+	background-color: #dddddd;
+	text-align: center;
+	padding-top: 8px;
+	color: #AAAAAA;
+}
+
+.btn-link {
+	font-size: 13px;
+	color: #AAAAAA;
+	text-decoration: none !important;
+}
+
+.btn-link:hover {
+	color: #AAAAAA;
+	text-decoration: none;
+}
+
+.nav-heading {
+	padding-top: 5px;
+	border-bottom: 1px solid #dddddd;
+}
+
+.nav-heading .col-md-2 {
+	padding-top: 7px;
+}
+
+.nav-heading .col-md-8, .nav-heading .col-md-7 {
+	padding: 0px;
+}
+
+.nav-heading i {
+	color: #AAAAAA;
+}
+
+.card {
+	border: none;
+}
+
+.card ul {
+	padding-left: 20px;
+}
+
+.card ul li {
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+}
+
+.card ul li:hover {
+	background-color: #dddddd
+}
+
+.card ul a {
+	font-size: 13px;
+	text-decoration: none;
+	color: #AAAAAA;
+}
+
+.navigation .notification, .navigation .message {
+	color: white;
+	text-align: center;
+	font-weight: 600;
+	border-radius: 3px;
+	margin-top: 3px;
+}
+
+.navigation .notification {
+	background: red;
+}
+
+.navigation .message {
+	background: #00FF00;
 }
