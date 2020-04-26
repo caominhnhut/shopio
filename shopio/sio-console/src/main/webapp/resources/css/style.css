@@ -163,3 +163,9 @@ html, body, .web-container, .row {
 	border-radius: 3px;
 	margin-top: 6px;
 }
+.btn-search:hover {
+	background-color: #0000EE;
+}
+.product{
+	padding: 10px;
+}
