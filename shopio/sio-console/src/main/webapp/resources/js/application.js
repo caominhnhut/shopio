@@ -1,13 +1,15 @@
 $(function() {
 
-  $("#dialog").dialog({
+  $("#addProductModal").dialog({
      autoOpen: false,
-     modal: true
+     modal: true,
+     minWidth: 700,
+     minHeight: 500
    });
 
   $("#btnAddProduct").on("click", function(e) {
       e.preventDefault();
-      $("#dialog").dialog("open");
+      $("#addProductModal").dialog("open");
   });
 
 });

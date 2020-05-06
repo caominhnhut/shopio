@@ -163,9 +163,59 @@ html, body, .web-container, .row {
 	border-radius: 3px;
 	margin-top: 6px;
 }
+
 .btn-search:hover {
 	background-color: #0000EE;
 }
-.product{
+
+.product {
 	padding: 10px;
+}
+
+#addProductModal {
+	padding-top: 30px;
+}
+
+#addProductModal input[type="text"], #addProductModal input[type="number"]
+	{
+	width: 100%;
+	height: 40px;
+	border-radius: 5px;
+	border: 1px solid #dddddd;
+	outline: none;
+	padding-left: 10px;
+	margin-bottom: 20px;
+}
+
+#addProductModal select {
+	width: 50%;
+	height: 40px;
+	border-radius: 5px;
+	border: 1px solid #dddddd;
+	outline: none;
+	padding-left: 10px;
+	margin-bottom: 20px;
+}
+
+#addProductModal input[type="file"] {
+	margin-top: 20px;
+}
+
+#addProductModal img {
+	width: 100%;
+	height: 100%;
+}
+
+#addProductModal .image {
+	text-align: center;
+	border: 1px solid #dddddd;
+	height: 280px;
+}
+
+#addProductModal .alert-danger {
+	margin-left: 14px;
+	margin-top: 10px;
+	margin-right: 15px;
+	width: 100%;
+	display: none;
 }
