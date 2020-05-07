@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<div class="web-name">WEB CONSOLE</div>
+<div class="web-name">ADMINISTRATOR</div>
 <div class="profile">
 	<div class="row">
 		<div class="col-md-4">
@@ -77,7 +77,7 @@
 				data-parent="#accordion">
 				<div class="card-body">
 					<ul>
-						<li><a href="#">Product List</a></li>
+						<li><a href="product">Product List</a></li>
 						<li><a href="#">Add New Product</a></li>
 					</ul>
 				</div>
