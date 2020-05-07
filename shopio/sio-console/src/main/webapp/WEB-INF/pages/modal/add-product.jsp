@@ -1,21 +1,21 @@
 <div id="addProductModal" title="Add New Product">
 	<div class="row">
 		<div class="col-md-6">
-			<div class="image"><img src="<c:url value="/asset/pictures-icon.png" />" /></div>
-			<div><input type="file"></div>
+			<div class="image"><img id="imgProduct" src="<c:url value="/asset/pictures-icon.png" />" /></div>
+			<div><input id="btnChooseFile" type="file"></div>
 		</div>
 		<div class="col-md-6">
 			<div>
-				<input type="text" placeholder="Product ID">
+				<input type="text" id="txtProductId" placeholder="Product ID">
 			</div>
 			<div>
-				<input type="text" placeholder="Product Name">
+				<input type="text" id="txtProductName" placeholder="Product Name">
 			</div>
 			<div>
-				<input type="number" placeholder="Cost Price">
+				<input type="number" id="txtCostPrice" placeholder="Cost Price" min="0">
 			</div>
 			<div>
-				<input type="number" placeholder="Selling Price">
+				<input type="number" id="txtSellingPrice" placeholder="Selling Price" min="0">
 			</div>
 			<div>
 				<select id="categories">
