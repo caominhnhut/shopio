@@ -1,4 +1,4 @@
-package com.gls.sio.feed.exception;
+package com.gls.sio.product.exception;
 
 public class HKException extends RuntimeException
 {

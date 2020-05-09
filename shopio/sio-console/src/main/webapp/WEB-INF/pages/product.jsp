@@ -85,5 +85,5 @@
 			</table>
 		</div>
 	</div>
-	<%@ include file="modal/add-product.jsp" %>  
 </div>
+<%@ include file="modal/add-product.jsp" %>
