@@ -33,7 +33,7 @@ public class CommentEntity extends BaseTimestamp
 
 	@ManyToOne
 	@JoinColumn(name = "feed_id")
-	private FeedEntity feed;
+	private ProductEntity feed;
 
 	@ManyToOne
 	@JoinColumn(name = "article_id")
@@ -69,12 +69,12 @@ public class CommentEntity extends BaseTimestamp
 		this.owner = owner;
 	}
 
-	public FeedEntity getFeed()
+	public ProductEntity getFeed()
 	{
 		return feed;
 	}
 
-	public void setFeed(FeedEntity feed)
+	public void setFeed(ProductEntity feed)
 	{
 		this.feed = feed;
 	}

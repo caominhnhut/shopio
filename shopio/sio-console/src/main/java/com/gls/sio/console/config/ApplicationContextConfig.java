@@ -3,22 +3,18 @@ package com.gls.sio.console.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
+
+import com.gls.sio.persistent.config.JPAConfiguration;
  
 @Configuration
-@ComponentScan("com.gls.sio.console.*") 
+@ComponentScan("com.gls.sio.console.*")
+@Import({JPAConfiguration.class})
 public class ApplicationContextConfig { 
-	
-//    @Bean(name = "viewResolver")
-//    public InternalResourceViewResolver getViewResolver() {
-//        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-//        viewResolver.setPrefix("/WEB-INF/pages/");
-//        viewResolver.setSuffix(".jsp");
-//        return viewResolver;
-//    }
     
     @Bean(name = "viewResolver")
     public ViewResolver getViewResolver() {

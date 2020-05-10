@@ -22,7 +22,6 @@ import com.gls.sio.rest.factory.contant.PackageConstants;
 @EntityScan(basePackages = {
         PackageConstants.PERSISTENT_ENTITY
 })
-@PropertySource("classpath:persistent.properties")
 @PropertySource("classpath:liquibase.properties")
 @PropertySource("classpath:file.properties")
 public class SHOPIOApplication

@@ -1,42 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>shopio</artifactId>
-    <groupId>gls.shopio</groupId>
-    <version>1.0</version>
-  </parent>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>shopio</artifactId>
+		<groupId>gls.shopio</groupId>
+		<version>1.0</version>
+	</parent>
 
-  <artifactId>sio-integration-test</artifactId>
-  <version>${parent.version}</version>
-  <packaging>jar</packaging>
+	<artifactId>sio-integration-test</artifactId>
+	<version>${parent.version}</version>
+	<packaging>jar</packaging>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.jbehave</groupId>
-      <artifactId>jbehave-core</artifactId>
-      <version>4.0.4</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>2.8.5</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpclient</artifactId>
-      <version>4.5.10</version>
-    </dependency>
+	<dependencies>
+		<dependency>
+			<groupId>org.jbehave</groupId>
+			<artifactId>jbehave-core</artifactId>
+			<version>4.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.10</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
 
-    <!-- Internal dependencies -->
-    <dependency>
-      <groupId>gls.shopio</groupId>
-      <artifactId>sio-rest</artifactId>
-      <version>${parent.version}</version>
-      <scope>compile</scope>
-    </dependency>
-  </dependencies>
+
+		<!-- Internal dependencies -->
+		<dependency>
+			<groupId>gls.shopio</groupId>
+			<artifactId>sio-rest</artifactId>
+			<version>${parent.version}</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
 
 </project>

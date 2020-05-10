@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gls.sio.persistent.repository.feed.FeedRepository;
+import com.gls.sio.persistent.repository.product.ProductRepository;
 import com.gls.sio.product.model.Product;
 import com.gls.sio.product.service.ProductService;
 
@@ -14,7 +14,7 @@ public class ProductServiceImpl implements ProductService {
 	private Logger logger = LoggerFactory.getLogger(ProductService.class);
 
 	@Autowired
-	private FeedRepository feedRepository;
+	private ProductRepository feedRepository;
 
 	@Override
 	public Product save(Product product) {

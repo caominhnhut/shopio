@@ -19,6 +19,11 @@
 			<version>${parent.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>gls.shopio</groupId>
+			<artifactId>sio-persistent</artifactId>
+			<version>${parent.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>

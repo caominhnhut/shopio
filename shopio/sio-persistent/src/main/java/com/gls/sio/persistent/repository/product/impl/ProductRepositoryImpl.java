@@ -1,4 +1,4 @@
-package com.gls.sio.persistent.repository.feed.impl;
+package com.gls.sio.persistent.repository.product.impl;
 
 import java.util.List;
 
@@ -10,27 +10,27 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
-import com.gls.sio.persistent.entity.FeedEntity;
 import com.gls.sio.persistent.entity.FeedEntity_;
+import com.gls.sio.persistent.entity.ProductEntity;
 import com.gls.sio.persistent.entity.UserEntity_;
 import com.gls.sio.persistent.repository.common.AbstractGenericDao;
-import com.gls.sio.persistent.repository.feed.FeedRepository;
+import com.gls.sio.persistent.repository.product.ProductRepository;
 
 @Repository
-public class FeedRepositoryImpl extends AbstractGenericDao<FeedEntity> implements FeedRepository
+public class ProductRepositoryImpl extends AbstractGenericDao<ProductEntity> implements ProductRepository
 {
 	@PostConstruct
 	public void init()
 	{
-		super.setClazz(FeedEntity.class);
+		super.setClazz(ProductEntity.class);
 	}
 
 	@Override
-	public List<FeedEntity> getLatest(Long userId, int limit, int offset)
+	public List<ProductEntity> getLatest(Long userId, int limit, int offset)
 	{
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<FeedEntity> cq = cb.createQuery(FeedEntity.class);
-		Root<FeedEntity> feed = cq.from(FeedEntity.class);
+		CriteriaQuery<ProductEntity> cq = cb.createQuery(ProductEntity.class);
+		Root<ProductEntity> feed = cq.from(ProductEntity.class);
 		cq.select(feed);
 
 		if (userId != null)

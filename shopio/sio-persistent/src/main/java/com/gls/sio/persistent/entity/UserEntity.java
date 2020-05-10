@@ -52,9 +52,6 @@ public class UserEntity extends BaseTimestamp implements UserDetails
 	private List<ArticleEntity> articles = new ArrayList<>();
 
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-	private List<FeedEntity> feeds = new ArrayList<>();
-
-	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	private List<CommentEntity> comments = new ArrayList<>();
 
 	@Override
@@ -146,11 +143,6 @@ public class UserEntity extends BaseTimestamp implements UserDetails
 	public List<TopicEntity> getTopics()
 	{
 		return topics;
-	}
-
-	public List<FeedEntity> getFeeds()
-	{
-		return feeds;
 	}
 
 	public List<ArticleEntity> getArticles()
