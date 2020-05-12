@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 import com.gls.sio.persistent.config.JPAConfiguration;
  
 @Configuration
-@ComponentScan("com.gls.sio.console.*")
+@ComponentScan("com.gls.sio.*")
 @Import({JPAConfiguration.class})
 public class ApplicationContextConfig { 
     
