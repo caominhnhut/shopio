@@ -1,5 +1,17 @@
 $(function() {
 
+	$("#loginModal").dialog({
+		modal : true,
+		minWidth : 700,
+		minHeight : 500,
+		open : function(event, ui) {
+			$(".ui-widget-overlay").css({
+				background : "#DDDDDD",
+				opacity : 1
+			});
+		}
+	});
+
 	$("#addProductModal").dialog({
 		autoOpen : false,
 		modal : true,
