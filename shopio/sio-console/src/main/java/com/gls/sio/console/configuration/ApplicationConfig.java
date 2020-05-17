@@ -16,21 +16,10 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.gls.sio.console")
-public class AppConfig extends WebMvcConfigurerAdapter {
-
-	/**
-	 * Configure ViewResolvers to deliver preferred views.
-	 */
-	@Override
-	public void configureViewResolvers(ViewResolverRegistry registry) {
-
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setViewClass(JstlView.class);
-		viewResolver.setPrefix("/WEB-INF/views/");
-		viewResolver.setSuffix(".jsp");
-		registry.viewResolver(viewResolver);
-	}
-
+//@ComponentScan("com.gls.sio.*")
+//@Import({JPAConfiguration.class})
+public class ApplicationConfig extends WebMvcConfigurerAdapter {
+	
 	/**
 	 * Configure ResourceHandlers to serve static resources like CSS/ Javascript
 	 * etc...
@@ -38,6 +27,9 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/static/**").addResourceLocations("/static/");
+		registry.addResourceHandler("/css/**").addResourceLocations("/resources/css/").setCachePeriod(31556926);
+		registry.addResourceHandler("/asset/**").addResourceLocations("/resources/asset/").setCachePeriod(31556926);
+		registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/").setCachePeriod(31556926);
 	}
 
 	/**

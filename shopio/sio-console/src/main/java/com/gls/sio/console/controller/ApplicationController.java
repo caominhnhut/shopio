@@ -17,7 +17,7 @@ public class ApplicationController {
 
 	@RequestMapping(value = {"/login", "/logout"}, method = RequestMethod.GET)
 	public String showLoginPage() {
-		return "login";
+		return "loginPage";
 	}
 
 	@RequestMapping(value = "/dba", method = RequestMethod.GET)
@@ -28,5 +28,15 @@ public class ApplicationController {
 	@RequestMapping(value = "/access_denied", method = RequestMethod.GET)
 	public String showAccessDeniedPage() {
 		return "accessDenied";
+	}
+	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String showHomePage() {
+		return "homePage";
+	}
+	
+	@RequestMapping(value = "/product", method = RequestMethod.GET)
+	public String showProductPage() {
+		return "productPage";
 	}
 }
