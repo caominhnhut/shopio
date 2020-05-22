@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.gls.sio.persistent.repository.user.UserRepository;
 
-@Service
+@Service("customUserDetailsService")
 public class UserDetailService implements UserDetailsService {
 
 	@Autowired
