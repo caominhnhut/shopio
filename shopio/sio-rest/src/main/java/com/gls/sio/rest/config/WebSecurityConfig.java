@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.gls.sio.rest.factory.jwt.TokenHelper;
-import com.gls.sio.user.service.impl.UserDetailService;
+import com.gls.sio.user.service.impl.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 	}
 
 	@Autowired
-	private UserDetailService userDetailsService;
+	private CustomUserDetailsService userDetailsService;
 
 	@Autowired
 	TokenHelper tokenHelper;

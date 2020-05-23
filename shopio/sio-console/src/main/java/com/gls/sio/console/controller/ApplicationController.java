@@ -9,34 +9,19 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @RequestMapping("/")
 @SessionAttributes("roles")
 public class ApplicationController {
-
-	@RequestMapping(value = "/login-success", method = RequestMethod.GET)
-	public String showLoginSuccess() {
-		return "loginSuccess";
-	}
-
-	@RequestMapping(value = {"/login", "/logout"}, method = RequestMethod.GET)
-	public String showLoginPage() {
+	
+	@RequestMapping(value = {"home", "login"}, method = RequestMethod.GET)
+	public String showHomePage() {
 		return "loginPage";
 	}
 
-	@RequestMapping(value = "/dba", method = RequestMethod.GET)
-	public String showDBAPage() {
-		return "dba";
-	}
-	
-	@RequestMapping(value = "/access_denied", method = RequestMethod.GET)
-	public String showAccessDeniedPage() {
-		return "accessDenied";
-	}
-	
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String showHomePage() {
-		return "homePage";
-	}
-	
-	@RequestMapping(value = "/product", method = RequestMethod.GET)
+	@RequestMapping(value = "product", method = RequestMethod.GET)
 	public String showProductPage() {
 		return "productPage";
+	}
+	
+	@RequestMapping(value = "access-denied", method = RequestMethod.GET)
+	public String showAccessDeniedPage() {
+		return "accessDeniedPage";
 	}
 }

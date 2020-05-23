@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.gls.sio.persistent.repository.user.UserRepository;
 
 @Service("customUserDetailsService")
-public class UserDetailService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
