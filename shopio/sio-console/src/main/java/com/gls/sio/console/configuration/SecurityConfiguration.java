@@ -32,7 +32,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/product").access("hasRole('ADMIN') or hasRole('DBA')")
+		.antMatchers("/product", 
+				"/product/list",
+				"/product/save").access("hasRole('ADMIN') or hasRole('DBA')")
 		.antMatchers("/dba").access("hasRole('DBA')")
 		.and().formLogin().loginPage("/login").loginProcessingUrl("/login-process").failureUrl("/home?error")
 		.usernameParameter("ssoId").passwordParameter("password").defaultSuccessUrl("/product")

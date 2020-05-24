@@ -14,11 +14,6 @@ public class ApplicationController {
 	public String showHomePage() {
 		return "loginPage";
 	}
-
-	@RequestMapping(value = "product", method = RequestMethod.GET)
-	public String showProductPage() {
-		return "productPage";
-	}
 	
 	@RequestMapping(value = "access-denied", method = RequestMethod.GET)
 	public String showAccessDeniedPage() {

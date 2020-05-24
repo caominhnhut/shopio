@@ -21,9 +21,15 @@
 	</definition>
 
 	<!-- Product Page -->
-	<definition name="productPage" extends="web.shopio">
-		<put-attribute name="title" value="Product Management" />
-		<put-attribute name="body" value="/WEB-INF/pages/product.jsp" />
+	<definition name="listOfProductPage" extends="web.shopio">
+		<put-attribute name="title" value="List Of Product" />
+		<put-attribute name="body" value="/WEB-INF/pages/product/list-of-product.jsp" />
+	</definition>
+	
+	<!-- Create or Update Product Page -->
+	<definition name="createOrUpdateProductPage" extends="web.shopio">
+		<put-attribute name="title" value="Create New Product" />
+		<put-attribute name="body" value="/WEB-INF/pages/product/create-update-product.jsp" />
 	</definition>
 	
 	<!-- Access Denied Page -->

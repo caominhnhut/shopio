@@ -1,18 +1,19 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div id="addProductModal" title="Add New Product">
-	<form:form action="save" modelAttribute="product" method="POST" acceptCharset="UTF-8">
+<div id="createOrUpdateProduct" title="Add New Product">
+	<c:url var="productSaveOrUpdateUrl" value="/product/save-or-update" />
+	<form:form action="${productSaveOrUpdateUrl}" modelAttribute="product" method="POST" acceptCharset="UTF-8">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<div class="image">
-					<img id="imgProduct"
-						src="<c:url value="/asset/pictures-icon.png" />" />
+					<img id="imgProduct" src="<c:url value="/asset/pictures-icon.png" />" />
 				</div>
 				<div>
 					<input id="btnChooseFile" type="file">
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-8">
 				<div>
 					<form:hidden path="id" />
 				</div>

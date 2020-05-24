@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <div class="web-name">ADMINISTRATOR</div>
 <div class="profile">
 	<div class="row">
@@ -77,8 +78,10 @@
 				data-parent="#accordion">
 				<div class="card-body">
 					<ul>
-						<li><a href="product">Product List</a></li>
-						<li><a href="#">Add New Product</a></li>
+						<c:url var="listOfProductUrl" value="/product/list"></c:url>
+						<c:url var="createOrUpdateProductUrl" value="/product/save-or-update"></c:url>
+						<li><a href="${listOfProductUrl}">Product List</a></li>
+						<li><a href="${createOrUpdateProductUrl}">Add New Product</a></li>
 					</ul>
 				</div>
 			</div>

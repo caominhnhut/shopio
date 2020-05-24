@@ -3,10 +3,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <div class="product">
-	<button id="btnAddProduct" class="btn btn-primary">
-		<i class="glyphicon glyphicon-plus"></i>&nbsp; Add New
-	</button>
-	<br> <br>
+	<br>
 	<div class="table100 ver1">
 		<div class="table100-head">
 			<table>
@@ -86,4 +83,3 @@
 		</div>
 	</div>
 </div>
-<%@ include file="modal/add-product.jsp" %>
