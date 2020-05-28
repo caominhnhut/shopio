@@ -28,6 +28,7 @@ public class SHOPIOApplication
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(SHOPIOApplication.class, args);
+        //SpringApplication.run(SHOPIOApplication.class, args);
+       //TODO: Hello
     }
 }
