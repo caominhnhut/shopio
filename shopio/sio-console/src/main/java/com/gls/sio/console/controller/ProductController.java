@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.gls.sio.product.model.DataResponse;
 import com.gls.sio.product.model.Product;
 import com.gls.sio.product.service.ProductService;
+import com.google.common.base.Strings;
 
 @Controller
 @RequestMapping(value = "/")
@@ -43,12 +45,14 @@ public class ProductController {
 		
 		LOGGER.info(String.format("Saving product with product code: [%s]", product.getCode()));
 		
-		product = productService.create(product);
-		if(product.getId() > 0)
+		DataResponse<Product> dataResponse = productService.create(product);
+		if(Strings.isNullOrEmpty(dataResponse.getErrorMessage()))
 		{
 			return "listOfProductPage";	
 		}
-		model.addAttribute("errorMessage", "Cannot save product");
-		return "createOrUpdateProductPage?error";
+		
+		model.addAttribute("errorMessage", dataResponse.getErrorMessage());
+		
+		return "createOrUpdateProductPage";
 	}
 }

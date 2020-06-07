@@ -43,8 +43,10 @@
 					</select>
 				</div>
 				<input type="submit" class="btn btn-primary" value="Create">
+				<c:if test="${not empty errorMessage}">
+					<div class="alert alert-danger">${errorMessage}</div>
+				</c:if>
 			</div>
-			<c:if test="${param.error != null}"><div class="alert alert-danger"><c:out value="${errorMessage}"/></div></c:if>
 		</div>
 	</form:form>
 </div>

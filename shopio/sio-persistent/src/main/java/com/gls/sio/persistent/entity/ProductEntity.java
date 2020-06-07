@@ -1,5 +1,6 @@
 package com.gls.sio.persistent.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +19,10 @@ public class ProductEntity extends BaseTimestamp {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq")
 	private Long id;
 
+	@Column(name="code", unique = true)
 	private String code;
 
+	@Column(name="name", unique = true)
 	private String name;
 
 	private Long costPrice;
