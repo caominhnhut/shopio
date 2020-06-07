@@ -1,4 +1,4 @@
-package com.gls.sio.persistent.repository.product.impl;
+package com.gls.sio.persistent.repository.impl;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Repository;
 import com.gls.sio.persistent.entity.FeedEntity_;
 import com.gls.sio.persistent.entity.ProductEntity;
 import com.gls.sio.persistent.entity.UserEntity_;
+import com.gls.sio.persistent.repository.ProductRepository;
 import com.gls.sio.persistent.repository.common.AbstractGenericDao;
-import com.gls.sio.persistent.repository.product.ProductRepository;
 
 @Repository
 public class ProductRepositoryImpl extends AbstractGenericDao<ProductEntity> implements ProductRepository

@@ -4,5 +4,5 @@ import com.gls.sio.product.model.Product;
 
 public interface ProductService
 {
-	Product save(Product product);
+	Product create(Product product);
 }

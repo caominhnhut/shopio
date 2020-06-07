@@ -1,4 +1,4 @@
-package com.gls.sio.persistent.repository.product;
+package com.gls.sio.persistent.repository;
 
 import java.util.List;
 

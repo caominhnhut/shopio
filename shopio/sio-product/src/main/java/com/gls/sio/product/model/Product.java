@@ -3,6 +3,7 @@ package com.gls.sio.product.model;
 import java.util.Calendar;
 
 public class Product {
+	
 	private long id;
 	private String code;
 	private String name;
@@ -57,5 +58,4 @@ public class Product {
 	public void setCreatedDate(Calendar createdDate) {
 		this.createdDate = createdDate;
 	}
-
 }

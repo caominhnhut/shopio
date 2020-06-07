@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.gls.sio.persistent.entity.Authority;
 import com.gls.sio.persistent.entity.UserEntity;
-import com.gls.sio.persistent.repository.user.UserRepository;
+import com.gls.sio.persistent.repository.UserRepository;
 import com.gls.sio.user.dto.RegisteredUser;
 import com.gls.sio.user.factory.Mapper;
 import com.gls.sio.user.model.User;

@@ -3,6 +3,9 @@
 
 <div id="createOrUpdateProduct" title="Add New Product">
 	<c:url var="productSaveOrUpdateUrl" value="/product/save-or-update" />
+	<%-- <c:out value="${product.code}"></c:out>
+	<c:out value="${product.name}"></c:out> --%>
+	
 	<form:form action="${productSaveOrUpdateUrl}" modelAttribute="product" method="POST" acceptCharset="UTF-8">
 		<div class="row">
 			<div class="col-md-4">
@@ -41,7 +44,7 @@
 				</div>
 				<input type="submit" class="btn btn-primary" value="Create">
 			</div>
-			<div class="alert alert-danger">There is a error</div>
+			<c:if test="${param.error != null}"><div class="alert alert-danger"><c:out value="${errorMessage}"/></div></c:if>
 		</div>
 	</form:form>
 </div>

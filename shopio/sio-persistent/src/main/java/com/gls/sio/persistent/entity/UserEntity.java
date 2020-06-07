@@ -46,11 +46,9 @@ public class UserEntity extends BaseTimestamp implements UserDetails
 	private List<Authority> authorities = new ArrayList<>();
 
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-	private List<TopicEntity> topics = new ArrayList<>();
-
-	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-	private List<ArticleEntity> articles = new ArrayList<>();
-
+	private List<ProductEntity> products = new ArrayList<>();
+	
+	//TODO: This could be removed
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	private List<CommentEntity> comments = new ArrayList<>();
 
@@ -140,18 +138,12 @@ public class UserEntity extends BaseTimestamp implements UserDetails
 		return this.authorities;
 	}
 
-	public List<TopicEntity> getTopics()
-	{
-		return topics;
-	}
-
-	public List<ArticleEntity> getArticles()
-	{
-		return articles;
-	}
-
 	public List<CommentEntity> getComments()
 	{
 		return comments;
+	}
+
+	public List<ProductEntity> getProducts() {
+		return products;
 	}
 }

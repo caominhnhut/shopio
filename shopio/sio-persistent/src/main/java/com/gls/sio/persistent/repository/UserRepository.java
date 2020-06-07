@@ -1,4 +1,4 @@
-package com.gls.sio.persistent.repository.user;
+package com.gls.sio.persistent.repository;
 
 import java.util.List;
 

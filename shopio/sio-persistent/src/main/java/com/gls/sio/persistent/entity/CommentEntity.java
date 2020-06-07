@@ -31,14 +31,6 @@ public class CommentEntity extends BaseTimestamp
 	@JoinColumn(name = "owner_id")
 	private UserEntity owner;
 
-	@ManyToOne
-	@JoinColumn(name = "feed_id")
-	private ProductEntity feed;
-
-	@ManyToOne
-	@JoinColumn(name = "article_id")
-	private ArticleEntity article;
-
 	public Long getId()
 	{
 		return id;
@@ -67,25 +59,5 @@ public class CommentEntity extends BaseTimestamp
 	public void setOwner(UserEntity owner)
 	{
 		this.owner = owner;
-	}
-
-	public ProductEntity getFeed()
-	{
-		return feed;
-	}
-
-	public void setFeed(ProductEntity feed)
-	{
-		this.feed = feed;
-	}
-
-	public ArticleEntity getArticle()
-	{
-		return article;
-	}
-
-	public void setArticle(ArticleEntity article)
-	{
-		this.article = article;
 	}
 }

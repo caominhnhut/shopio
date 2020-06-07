@@ -1,4 +1,4 @@
-package com.gls.sio.persistent.repository.user.impl;
+package com.gls.sio.persistent.repository.impl;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gls.sio.persistent.entity.Authority;
 import com.gls.sio.persistent.entity.UserEntity;
+import com.gls.sio.persistent.repository.UserRepository;
 import com.gls.sio.persistent.repository.common.AbstractGenericDao;
-import com.gls.sio.persistent.repository.user.UserRepository;
 
 @Repository("userRepository")
 @Transactional

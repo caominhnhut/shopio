@@ -11,7 +11,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.gls.sio.file.service.FileService;
 import com.gls.sio.file.service.exception.FileStorageException;
 import com.gls.sio.persistent.entity.FileEntity;
-import com.gls.sio.persistent.repository.file.FileRepository;
+import com.gls.sio.persistent.repository.FileRepository;
 
 @Service
 public class FileServiceImpl implements FileService

@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,6 +26,10 @@ public class ProductEntity extends BaseTimestamp {
 
 	private Long sellingPrice;
 
+	@ManyToOne
+	@JoinColumn(name = "owner_id")
+	private UserEntity owner;
+	
 	public Long getId() {
 		return id;
 	}
@@ -62,5 +68,13 @@ public class ProductEntity extends BaseTimestamp {
 
 	public void setSellingPrice(long sellingPrice) {
 		this.sellingPrice = sellingPrice;
+	}
+
+	public UserEntity getOwner() {
+		return owner;
+	}
+
+	public void setOwner(UserEntity owner) {
+		this.owner = owner;
 	}
 }
