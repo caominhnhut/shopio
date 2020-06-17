@@ -33,6 +33,10 @@ public class ProductEntity extends BaseTimestamp {
 	@JoinColumn(name = "owner_id")
 	private UserEntity owner;
 	
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private CategoryEntity category;
+	
 	public Long getId() {
 		return id;
 	}

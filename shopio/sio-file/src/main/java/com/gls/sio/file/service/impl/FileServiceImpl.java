@@ -1,7 +1,13 @@
 package com.gls.sio.file.service.impl;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Calendar;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -14,44 +20,61 @@ import com.gls.sio.persistent.entity.FileEntity;
 import com.gls.sio.persistent.repository.FileRepository;
 
 @Service
-public class FileServiceImpl implements FileService
-{
-    @Autowired
-    private FileRepository fileRepository;
+public class FileServiceImpl implements FileService {
 
-    @Override
-    public FileEntity store(MultipartFile file)
-    {
-        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+	private final static String DOWN_LOAD_URI = "/download-file/";
+	private final static String PRODUCT_IMAGES_DIRECTORY = "/Individual/Project/shopio/sio-file/product-images/%s";
+	private final static String INVALID_FILENAME_MESSAGE = "Filename contains invalid path sequence: [%s]";
+	private final static String ERROR_SAVING_MESSAGE = "Error when saving file: [%s]";
 
-        try
-        {
-            // Check if the file's name contains invalid characters
-            if (filename.contains(".."))
-            {
-                throw new FileStorageException("Sorry! Filename contains invalid path sequence " + filename);
-            }
+	@Autowired
+	private FileRepository fileRepository;
 
-            FileEntity fileEntity = new FileEntity(filename, file.getContentType(), file.getBytes());
+	@Override
+	public FileEntity store(MultipartFile file) {
+		String filename = StringUtils.cleanPath(file.getOriginalFilename());
 
-            String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path("/downloadFile/")
-                    .path(fileEntity.getId().toString())
-                    .toUriString();
+		if (filename.contains("..")) {
+			throw new FileStorageException(String.format(INVALID_FILENAME_MESSAGE, filename));
+		}
 
-            fileEntity.setFileDownloadUri(fileDownloadUri);
+		String uniqueName = generateUniqueFilename(filename);
 
-            return fileRepository.create(fileEntity);
-        }
-        catch (IOException ex)
-        {
-            throw new FileStorageException("Could not store file " + filename + ". Please try again!", ex);
-        }
-    }
+		try {
 
-    @Override
-    public FileEntity findById(Long id)
-    {
-        return fileRepository.findOne(id);
-    }
+			FileEntity fileEntity = new FileEntity(uniqueName, file.getContentType(), file.getBytes());
+
+			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path(DOWN_LOAD_URI)
+					.path(fileEntity.getFilename()).toUriString();
+
+			fileEntity.setFileDownloadUri(fileDownloadUri);
+			
+			File image = new File(String.format(PRODUCT_IMAGES_DIRECTORY, fileEntity.getFilename()));
+			FileUtils.writeByteArrayToFile(image, fileEntity.getData());
+
+			return null;// fileRepository.create(fileEntity);
+
+		} catch (IOException ex) {
+			throw new FileStorageException(String.format(ERROR_SAVING_MESSAGE, uniqueName), ex);
+		}
+	}
+
+	@Override
+	public FileEntity findById(Long id) {
+		return fileRepository.findOne(id);
+	}
+
+	private String generateUniqueFilename(String filename) {
+
+		String extension = FilenameUtils.getExtension(filename);
+		String baseName = FilenameUtils.getBaseName(filename);
+
+		StringBuilder builder = new StringBuilder()
+				.append(baseName)
+				.append(Calendar.getInstance().getTimeInMillis())
+				.append(".")
+				.append(extension);
+
+		return builder.toString();
+	}
 }

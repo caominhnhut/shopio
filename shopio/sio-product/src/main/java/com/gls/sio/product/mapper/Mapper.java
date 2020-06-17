@@ -2,7 +2,9 @@ package com.gls.sio.product.mapper;
 
 import org.springframework.stereotype.Component;
 
+import com.gls.sio.persistent.entity.CategoryEntity;
 import com.gls.sio.persistent.entity.ProductEntity;
+import com.gls.sio.product.model.Category;
 import com.gls.sio.product.model.Product;
 
 @Component
@@ -17,5 +19,10 @@ public class Mapper {
 		productEntity.setSellingPrice(product.getSellingPrice());
 		
 		return productEntity;
+	}
+	
+	public Category mapToCategory(CategoryEntity categoryEntity)
+	{
+		return new Category(categoryEntity.getId(), categoryEntity.getName());
 	}
 }

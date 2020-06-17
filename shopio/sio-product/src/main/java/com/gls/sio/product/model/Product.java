@@ -1,21 +1,42 @@
 package com.gls.sio.product.model;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class Product {
 	
-	private long id;
+	private Long id;
 	private String code;
 	private String name;
-	private long costPrice;
-	private long sellingPrice;
+	private Long costPrice;
+	private Long sellingPrice;
+	private Long category;
+	private List<MultipartFile> images;
 	private Calendar createdDate;
 
-	public long getId() {
+	@Override
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+		builder.append("\nid: ").append(this.id)
+		.append("\ncode: ").append(this.code)
+		.append("\nname: ").append(this.name)
+		.append("\ncostPrice: ").append(this.costPrice)
+		.append("\nsellingPrice: ").append(this.sellingPrice)
+		.append("\ncategory: ").append(this.category)
+		.append("\nimages: ").append(images.size());
+		
+		return builder.toString();
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -35,20 +56,28 @@ public class Product {
 		this.name = name;
 	}
 
-	public long getCostPrice() {
+	public Long getCostPrice() {
 		return costPrice;
 	}
 
-	public void setCostPrice(long costPrice) {
+	public void setCostPrice(Long costPrice) {
 		this.costPrice = costPrice;
 	}
 
-	public long getSellingPrice() {
+	public Long getSellingPrice() {
 		return sellingPrice;
 	}
 
-	public void setSellingPrice(long sellingPrice) {
+	public void setSellingPrice(Long sellingPrice) {
 		this.sellingPrice = sellingPrice;
+	}
+
+	public Long getCategory() {
+		return category;
+	}
+
+	public void setCategory(Long category) {
+		this.category = category;
 	}
 
 	public Calendar getCreatedDate() {
@@ -57,5 +86,13 @@ public class Product {
 
 	public void setCreatedDate(Calendar createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	public List<MultipartFile> getImages() {
+		return images;
+	}
+
+	public void setImages(List<MultipartFile> images) {
+		this.images = images;
 	}
 }

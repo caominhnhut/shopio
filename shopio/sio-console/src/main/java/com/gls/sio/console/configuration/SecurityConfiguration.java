@@ -37,9 +37,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				"/product/save").access("hasRole('ADMIN') or hasRole('DBA')")
 		.antMatchers("/dba").access("hasRole('DBA')")
 		.and().formLogin().loginPage("/login").loginProcessingUrl("/login-process").failureUrl("/home?error")
-		.usernameParameter("ssoId").passwordParameter("password").defaultSuccessUrl("/product")
-		.and().csrf()
-		.and().exceptionHandling().accessDeniedPage("/access-denied");
+		.usernameParameter("ssoId").passwordParameter("password").defaultSuccessUrl("/product")	
+		.and().exceptionHandling().accessDeniedPage("/access-denied")
+		.and().csrf().disable();
+		//Disable csrf for send multipart/form-data
 	}
 
 	@Bean

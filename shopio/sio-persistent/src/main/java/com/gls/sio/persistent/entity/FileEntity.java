@@ -5,9 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "file")
@@ -24,8 +24,7 @@ public class FileEntity
     @Column(name = "file_type")
     private String fileType;
 
-    @Column(name = "data")
-    @Lob
+    @Transient
     private byte[] data;
 
     @Column(name = "file_download_uri")

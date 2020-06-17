@@ -19,5 +19,10 @@
       <artifactId>sio-persistent</artifactId>
       <version>${parent.version}</version>
     </dependency>
+    <dependency>
+      <groupId>gls.shopio</groupId>
+      <artifactId>sio-file</artifactId>
+      <version>${parent.version}</version>
+    </dependency>
   </dependencies>
 </project>

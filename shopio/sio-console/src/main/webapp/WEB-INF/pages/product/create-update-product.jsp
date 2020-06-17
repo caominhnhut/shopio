@@ -3,17 +3,15 @@
 
 <div id="createOrUpdateProduct" title="Add New Product">
 	<c:url var="productSaveOrUpdateUrl" value="/product/save-or-update" />
-	<%-- <c:out value="${product.code}"></c:out>
-	<c:out value="${product.name}"></c:out> --%>
 	
-	<form:form action="${productSaveOrUpdateUrl}" modelAttribute="product" method="POST" acceptCharset="UTF-8">
+	<form:form action="${productSaveOrUpdateUrl}" commandName="product" method="POST" enctype="multipart/form-data">
 		<div class="row">
 			<div class="col-md-4">
 				<div class="image">
 					<img id="imgProduct" src="<c:url value="/asset/pictures-icon.png" />" />
 				</div>
 				<div>
-					<input id="btnChooseFile" type="file">
+					<input id="btnChooseFile" type="file" name="images" multiple="multiple">
 				</div>
 			</div>
 			<div class="col-md-8">
@@ -37,10 +35,11 @@
 						placeholder="Selling Price" min="0" />
 				</div>
 				<div>
-					<select id="categories">
-						<option value="1">Wooden Toy</option>
-						<option value="2">Plastic Toy</option>
-					</select>
+					<form:select path="category" id="category">
+						<c:forEach var="category" items="${categories}">							
+							<option value="${category.id}">${category.name}</option>
+						</c:forEach>
+					</form:select>
 				</div>
 				<input type="submit" class="btn btn-primary" value="Create">
 				<c:if test="${not empty errorMessage}">
