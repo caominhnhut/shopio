@@ -2,8 +2,6 @@ package com.gls.sio.file.service.impl;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Calendar;
 
 import org.apache.commons.io.FileUtils;
@@ -30,8 +28,12 @@ public class FileServiceImpl implements FileService {
 	@Autowired
 	private FileRepository fileRepository;
 
+	/*
+	 * The file will be stored in: D:\Individual\Project\shopio\sio-file\product-images
+	 */
 	@Override
-	public FileEntity store(MultipartFile file) {
+	public FileEntity storeFile(MultipartFile file) {
+		
 		String filename = StringUtils.cleanPath(file.getOriginalFilename());
 
 		if (filename.contains("..")) {
@@ -52,7 +54,7 @@ public class FileServiceImpl implements FileService {
 			File image = new File(String.format(PRODUCT_IMAGES_DIRECTORY, fileEntity.getFilename()));
 			FileUtils.writeByteArrayToFile(image, fileEntity.getData());
 
-			return null;// fileRepository.create(fileEntity);
+			return fileEntity;
 
 		} catch (IOException ex) {
 			throw new FileStorageException(String.format(ERROR_SAVING_MESSAGE, uniqueName), ex);
@@ -64,6 +66,11 @@ public class FileServiceImpl implements FileService {
 		return fileRepository.findOne(id);
 	}
 
+	@Override
+	public FileEntity create(FileEntity fileEntity) {
+		return fileRepository.create(fileEntity);
+	}
+	
 	private String generateUniqueFilename(String filename) {
 
 		String extension = FilenameUtils.getExtension(filename);

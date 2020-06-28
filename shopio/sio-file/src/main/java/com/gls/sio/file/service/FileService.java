@@ -6,7 +6,9 @@ import com.gls.sio.persistent.entity.FileEntity;
 
 public interface FileService
 {
-    FileEntity store(MultipartFile file);
+    FileEntity storeFile(MultipartFile file);
 
     FileEntity findById(Long id);
+    
+    FileEntity create(FileEntity fileEntity);
 }

@@ -1,8 +1,6 @@
 package com.gls.sio.console.controller;
 
-import java.util.Arrays;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gls.sio.product.model.Category;
@@ -29,37 +25,43 @@ import com.google.common.base.Strings;
 public class ProductController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
-	
+
 	@Autowired
 	private ProductService productService;
-	
+
 	@RequestMapping(value = { "product", "product/list" }, method = RequestMethod.GET)
 	public String showProductListPage(Model model) {
 		model.addAttribute("product", new Product());
 		return "listOfProductPage";
 	}
-	
-	@RequestMapping(value = { "product/save-or-update"}, method = RequestMethod.GET)
+
+	@RequestMapping(value = { "product/save-or-update" }, method = RequestMethod.GET)
 	public ModelAndView showCreateProductPage() {
+
 		ModelAndView modelView = new ModelAndView("createOrUpdateProductPage");
 		modelView.addObject("product", new Product());
-		modelView.addObject("categories", Arrays.asList(new Category(1L, "Wooden Toy"), new Category(2L, "Plastic Toy"), new Category(3L, "Smart Toy")));
+
+		List<Category> categories = productService.getCategories();
+		modelView.addObject("categories", categories);
+
 		return modelView;
 	}
 
 	@RequestMapping(value = "product/save-or-update", method = RequestMethod.POST)
-	public String saveOrUpdate(@ModelAttribute Product product, BindingResult bindingResul, ModelMap model) {
-		
+	public ModelAndView saveOrUpdate(@ModelAttribute Product product, BindingResult bindingResul, ModelMap model) {
+
 		LOGGER.info(String.format("Saving product: [%s]", product));
-		
+
+		ModelAndView modelAndView = new ModelAndView("listOfProductPage");
+
 		DataResponse<Product> dataResponse = productService.create(product);
-		if(Strings.isNullOrEmpty(dataResponse.getErrorMessage()))
-		{
-			return "listOfProductPage";	
+		if (Strings.isNullOrEmpty(dataResponse.getErrorMessage())) {
+			return modelAndView;
 		}
-		
-		model.addAttribute("errorMessage", dataResponse.getErrorMessage());
-		
-		return "createOrUpdateProductPage";
+
+		modelAndView.addObject("errorMessage", dataResponse.getErrorMessage());
+		modelAndView.setViewName("createOrUpdateProductPage");
+
+		return modelAndView;
 	}
 }

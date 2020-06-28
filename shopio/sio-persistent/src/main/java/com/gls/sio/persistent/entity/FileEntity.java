@@ -2,9 +2,12 @@ package com.gls.sio.persistent.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -29,6 +32,10 @@ public class FileEntity
 
     @Column(name = "file_download_uri")
     private String fileDownloadUri;
+    
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "product_id")
+    private ProductEntity product;
 
     public FileEntity()
     {
@@ -91,4 +98,13 @@ public class FileEntity
     {
         this.fileDownloadUri = fileDownloadUri;
     }
+
+	public ProductEntity getProduct() {
+		return product;
+	}
+
+	public void setProduct(ProductEntity product) {
+		this.product = product;
+		product.getFiles().add(this);
+	}
 }

@@ -34,14 +34,14 @@ public class FileController
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public ResponseEntity<FileEntity> uploadFile(@RequestParam("file") MultipartFile file)
     {
-        FileEntity fileEntity = dbFileStorageService.store(file);
+        FileEntity fileEntity = dbFileStorageService.storeFile(file);
         return new ResponseEntity<>(fileEntity, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/uploadMultipleFiles", method = RequestMethod.POST)
     public ResponseEntity<List<FileEntity>> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files)
     {
-        List<FileEntity> fileEntities = Arrays.asList(files).stream().map(file -> dbFileStorageService.store(file)).collect(Collectors.toList());
+        List<FileEntity> fileEntities = Arrays.asList(files).stream().map(file -> dbFileStorageService.storeFile(file)).collect(Collectors.toList());
 
         return new ResponseEntity<>(fileEntities, HttpStatus.CREATED);
     }

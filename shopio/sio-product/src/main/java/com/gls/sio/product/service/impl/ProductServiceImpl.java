@@ -12,9 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gls.sio.file.service.FileService;
 import com.gls.sio.persistent.entity.CategoryEntity;
+import com.gls.sio.persistent.entity.FileEntity;
 import com.gls.sio.persistent.entity.ProductEntity;
 import com.gls.sio.persistent.entity.UserEntity;
-import com.gls.sio.persistent.exception.ShopIOException;
 import com.gls.sio.persistent.repository.CategoryRepository;
 import com.gls.sio.persistent.repository.ProductRepository;
 import com.gls.sio.product.mapper.Mapper;
@@ -28,13 +28,14 @@ public class ProductServiceImpl implements ProductService {
 
 	private Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
 
-	private static final String SAVE_PRODUCT_ERROR_MESSAGE = "Cannot save product with product code: [%s]";
+	private static final String SAVE_PRODUCT_ERROR_MESSAGE = "Error when saving product with product code: [%s]. Please try again in 5 minutes";
+	private static final String SAVE_PRODUCT_MESSAGE = "Saving product with product code [%s]";
 
 	@Autowired
 	private ProductRepository productRepository;
 
-//	@Autowired
-//	private CategoryRepository categoryRepository;
+	@Autowired
+	private CategoryRepository categoryRepository;
 
 	@Autowired
 	private FileService fileService;
@@ -44,33 +45,34 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public DataResponse<Product> create(Product product) {
-		//TODO: Add category
-		//TODO: show product list
-		LOGGER.info(String.format("Saving product with product code [%s] to database", product.getCode()));
-		
-		for(MultipartFile image: product.getImages())
-		{
-			fileService.store(image);
+
+		LOGGER.info(String.format(SAVE_PRODUCT_MESSAGE, product.getCode()));
+
+		ProductEntity productEntity = mapper.mapFromProduct(product);
+
+		for (MultipartFile image : product.getImages()) {
+			FileEntity fileEntity = fileService.storeFile(image);
+			fileEntity.setProduct(productEntity);
 		}
-		
+
+		UserEntity userEntity = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		productEntity.setOwner(userEntity);
+
+		CategoryEntity categoryEntity = categoryRepository.findOne(product.getCategory());
+		productEntity.setCategory(categoryEntity);
+
 		DataResponse<Product> dataResponse = new DataResponse<Product>();
-		
-//		UserEntity userEntity = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//		ProductEntity productEntity = mapper.mapFromProduct(product);
-//		productEntity.setOwner(userEntity);
-//		
-//		try
-//		{
-//			ProductEntity createdProduct = productRepository.create(productEntity);
-//			product.setId(createdProduct.getId());
-//			dataResponse.setData(product);
-//		}
-//		catch (Exception e)
-//		{
-//			LOGGER.error(String.format(SAVE_PRODUCT_ERROR_MESSAGE, e.getMessage()));
-//			dataResponse.setErrorMessage(String.format(SAVE_PRODUCT_ERROR_MESSAGE, e.getMessage()));
-//		}
+
+		try {
+
+			ProductEntity createdProduct = productRepository.create(productEntity);
+			product.setId(createdProduct.getId());
+			dataResponse.setData(product);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			dataResponse.setErrorMessage(String.format(SAVE_PRODUCT_ERROR_MESSAGE, product.getCode()));
+		}
 
 		return dataResponse;
 	}
@@ -78,9 +80,8 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Category> getCategories() {
 
-//		List<CategoryEntity> categories = categoryRepository.findAll();
-//		
-//		return categories.stream().map(mapper::mapToCategory).collect(Collectors.toList());
-		return null;
+		List<CategoryEntity> categories = categoryRepository.findAll();
+
+		return categories.stream().map(mapper::mapToCategory).collect(Collectors.toList());
 	}
 }
