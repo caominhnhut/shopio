@@ -182,7 +182,7 @@ html, body, .web-container, .row {
 
 #createOrUpdateProduct input[type="text"], #createOrUpdateProduct input[type="number"]
 	{
-	width: 100%;
+	width: 60%;
 	height: 40px;
 	border-radius: 5px;
 	border: 1px solid #dddddd;
@@ -191,8 +191,12 @@ html, body, .web-container, .row {
 	margin-bottom: 20px;
 }
 
+#createOrUpdateProduct label {
+	color: red;
+}
+
 #createOrUpdateProduct select {
-	width: 50%;
+	width: 60%;
 	height: 40px;
 	border-radius: 5px;
 	border: 1px solid #dddddd;

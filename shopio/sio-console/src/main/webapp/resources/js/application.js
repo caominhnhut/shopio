@@ -50,7 +50,7 @@ $(function() {
 	});
 
 	function resetProductModal() {
-		$("#txtProductId").val('');
+		$("#txtProductCode").val('');
 		$("#txtProductName").val('');
 		$("#txtCostPrice").val('');
 		$("#txtSellingPrice").val('');

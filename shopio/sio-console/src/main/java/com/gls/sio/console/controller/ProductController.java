@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gls.sio.console.validator.Errors;
+import com.gls.sio.console.validator.RequestValidator;
 import com.gls.sio.product.model.Category;
 import com.gls.sio.product.model.DataResponse;
 import com.gls.sio.product.model.Product;
@@ -26,19 +27,27 @@ public class ProductController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
+	private static final String PRODUCTS_VIEW = "listOfProductPage";
+	private static final String CREATE_UPDATE_PRODUCT_VIEW = "createOrUpdateProductPage";
+
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private RequestValidator requestValidator;
 
 	@RequestMapping(value = { "product", "product/list" }, method = RequestMethod.GET)
 	public String showProductListPage(Model model) {
+		
 		model.addAttribute("product", new Product());
-		return "listOfProductPage";
+		
+		return PRODUCTS_VIEW;
 	}
 
 	@RequestMapping(value = { "product/save-or-update" }, method = RequestMethod.GET)
 	public ModelAndView showCreateProductPage() {
 
-		ModelAndView modelView = new ModelAndView("createOrUpdateProductPage");
+		ModelAndView modelView = new ModelAndView(CREATE_UPDATE_PRODUCT_VIEW);
 		modelView.addObject("product", new Product());
 
 		List<Category> categories = productService.getCategories();
@@ -48,20 +57,26 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "product/save-or-update", method = RequestMethod.POST)
-	public ModelAndView saveOrUpdate(@ModelAttribute Product product, BindingResult bindingResul, ModelMap model) {
+	public ModelAndView saveOrUpdate(@ModelAttribute Product product, ModelMap model) {
 
 		LOGGER.info(String.format("Saving product: [%s]", product));
 
-		ModelAndView modelAndView = new ModelAndView("listOfProductPage");
+		ModelAndView modelAndView = new ModelAndView(CREATE_UPDATE_PRODUCT_VIEW);
 
-		DataResponse<Product> dataResponse = productService.create(product);
-		if (Strings.isNullOrEmpty(dataResponse.getErrorMessage())) {
+		Errors errors = requestValidator.validateProduct(product);
+		if (!errors.getErrors().isEmpty()) {
+			modelAndView.addObject("errorList", errors);
 			return modelAndView;
 		}
 
-		modelAndView.addObject("errorMessage", dataResponse.getErrorMessage());
-		modelAndView.setViewName("createOrUpdateProductPage");
+		DataResponse<Product> dataResponse = productService.create(product);
 
+		if (!Strings.isNullOrEmpty(dataResponse.getErrorMessage())) {
+			modelAndView.addObject("errorMessage", dataResponse.getErrorMessage());
+			return modelAndView;
+		}
+
+		modelAndView.setViewName(PRODUCTS_VIEW);
 		return modelAndView;
 	}
 }

@@ -10,9 +10,9 @@ public class Product {
 	private Long id;
 	private String code;
 	private String name;
-	private Long costPrice;
-	private Long sellingPrice;
-	private Long category;
+	private long costPrice;
+	private long sellingPrice;
+	private long category;
 	private List<MultipartFile> images;
 	private Calendar createdDate;
 
@@ -55,27 +55,27 @@ public class Product {
 		this.name = name;
 	}
 
-	public Long getCostPrice() {
+	public long getCostPrice() {
 		return costPrice;
 	}
 
-	public void setCostPrice(Long costPrice) {
+	public void setCostPrice(long costPrice) {
 		this.costPrice = costPrice;
 	}
 
-	public Long getSellingPrice() {
+	public long getSellingPrice() {
 		return sellingPrice;
 	}
 
-	public void setSellingPrice(Long sellingPrice) {
+	public void setSellingPrice(long sellingPrice) {
 		this.sellingPrice = sellingPrice;
 	}
 
-	public Long getCategory() {
+	public long getCategory() {
 		return category;
 	}
 
-	public void setCategory(Long category) {
+	public void setCategory(long category) {
 		this.category = category;
 	}
 

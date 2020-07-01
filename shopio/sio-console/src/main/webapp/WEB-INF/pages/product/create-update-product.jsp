@@ -13,26 +13,37 @@
 				<div>
 					<input id="btnChooseFile" type="file" name="images" multiple="multiple">
 				</div>
+				<c:if test="${not empty errorList}">
+					<label><c:out value="${errorList.errors['PRODUCT_IMAGE_ERROR']}"></c:out></label>
+				</c:if>
 			</div>
 			<div class="col-md-8">
 				<div>
 					<form:hidden path="id" />
 				</div>
 				<div>
-					<form:input path="code" type="text" id="txtProductId"
-						placeholder="Product ID" />
+					<form:input path="code" type="text" id="txtProductCode" placeholder="Product Code" />
+					<c:if test="${not empty errorList}">
+						<label><c:out value="${errorList.errors['PRODUCT_CODE_ERROR']}"></c:out></label>
+					</c:if>
 				</div>
 				<div>
-					<form:input path="name" type="text" id="txtProductName"
-						placeholder="Product Name" />
+					<form:input path="name" type="text" id="txtProductName" placeholder="Product Name" />
+					<c:if test="${not empty errorList}">
+						<label><c:out value="${errorList.errors['PRODUCT_NAME_ERROR']}"></c:out></label>
+					</c:if>
 				</div>
 				<div>
-					<form:input path="costPrice" type="number" id="txtCostPrice"
-						placeholder="Cost Price" min="0" />
+					<form:input path="costPrice" type="number" id="txtCostPrice" placeholder="Cost Price" min="0" />
+					<c:if test="${not empty errorList}">
+						<label><c:out value="${errorList.errors['PRODUCT_COST_PRICE_ERROR']}"></c:out></label>
+					</c:if>
 				</div>
 				<div>
-					<form:input path="sellingPrice" type="number" id="txtSellingPrice"
-						placeholder="Selling Price" min="0" />
+					<form:input path="sellingPrice" type="number" id="txtSellingPrice" placeholder="Selling Price" min="0" />
+					<c:if test="${not empty errorList}">
+						<label><c:out value="${errorList.errors['PRODUCT_SELLING_PRICE_ERROR']}"></c:out></label>
+					</c:if>
 				</div>
 				<div>
 					<form:select path="category" id="category">
@@ -40,6 +51,9 @@
 							<option value="${category.id}">${category.name}</option>
 						</c:forEach>
 					</form:select>
+					<c:if test="${not empty errorList}">
+						<label><c:out value="${errorList.errors['PRODUCT_CATEGORY_ERROR']}"></c:out></label>
+					</c:if>
 				</div>
 				<input type="submit" class="btn btn-primary" value="Create">
 				<c:if test="${not empty errorMessage}">
