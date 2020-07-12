@@ -19,9 +19,9 @@ import com.gls.sio.persistent.repository.FileRepository;
 
 @Service
 public class FileServiceImpl implements FileService {
-
-	private final static String DOWN_LOAD_URI = "/download-file/";
-	private final static String PRODUCT_IMAGES_DIRECTORY = "/Individual/Project/shopio/sio-file/product-images/%s";
+	
+	private final static String DOWN_LOAD_URI = "/product-images/";
+	private final static String PRODUCT_IMAGES_DIRECTORY = "D:/Individual/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/sio-console/product-images/%s";
 	private final static String INVALID_FILENAME_MESSAGE = "Filename contains invalid path sequence: [%s]";
 	private final static String ERROR_SAVING_MESSAGE = "Error when saving file: [%s]";
 
@@ -29,7 +29,8 @@ public class FileServiceImpl implements FileService {
 	private FileRepository fileRepository;
 
 	/*
-	 * The file will be stored in: D:\Individual\Project\shopio\sio-file\product-images
+	 * String pathToSaveImage = servletRequest.getServletContext().getRealPath("/product-images");
+	 * The file will be stored in: pathToSaveImage = D:\Individual\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\sio-console\product-images
 	 */
 	@Override
 	public FileEntity storeFile(MultipartFile file) {

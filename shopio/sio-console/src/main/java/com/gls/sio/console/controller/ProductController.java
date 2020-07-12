@@ -2,6 +2,8 @@ package com.gls.sio.console.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,15 +59,19 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "product/save-or-update", method = RequestMethod.POST)
-	public ModelAndView saveOrUpdate(@ModelAttribute Product product, ModelMap model) {
+	public ModelAndView saveOrUpdate(HttpServletRequest servletRequest, @ModelAttribute Product product, ModelMap model) {
 
 		LOGGER.info(String.format("Saving product: [%s]", product));
 
 		ModelAndView modelAndView = new ModelAndView(CREATE_UPDATE_PRODUCT_VIEW);
 
 		Errors errors = requestValidator.validateProduct(product);
-		if (!errors.getErrors().isEmpty()) {
+		if (!errors.getErrors().isEmpty()) {			
 			modelAndView.addObject("errorList", errors);
+			
+			List<Category> categories = productService.getCategories();
+			modelAndView.addObject("categories", categories);
+			
 			return modelAndView;
 		}
 
