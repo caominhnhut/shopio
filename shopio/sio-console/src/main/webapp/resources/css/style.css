@@ -219,3 +219,13 @@ html, body, .web-container, .row {
 	width: 100%;
 	display: none;
 }
+/* LOGIN MODAL */
+#loginModal input {
+	width: 100%;
+	height: 40px;
+	border-radius: 5px;
+	border: 1px solid #dddddd;
+	outline: none;
+	padding-left: 10px;
+	margin-bottom: 20px;
+}

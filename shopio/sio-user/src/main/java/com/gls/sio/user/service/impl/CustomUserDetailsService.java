@@ -8,15 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.gls.sio.persistent.repository.user.UserRepository;
 
-@Service
-public class UserDetailService implements UserDetailsService
-{
+@Service("customUserDetailsService")
+public class CustomUserDetailsService implements UserDetailsService {
+
 	@Autowired
 	private UserRepository userRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
-	{
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		return userRepository.findByEmail(username);
 	}
 }

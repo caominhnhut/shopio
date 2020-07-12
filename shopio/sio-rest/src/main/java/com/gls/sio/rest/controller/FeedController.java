@@ -15,48 +15,48 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.gls.sio.feed.model.Feed;
-import com.gls.sio.feed.service.FeedService;
 import com.gls.sio.persistent.entity.UserEntity;
+import com.gls.sio.product.model.Product;
+import com.gls.sio.product.service.ProductService;
 
 @Controller
 public class FeedController
 {
 	@Autowired
-	private FeedService feedService;
+	private ProductService feedService;
 
 	@RequestMapping(value = "feed", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<Feed> create(@RequestBody @Valid Feed feed)
+	public ResponseEntity<Product> create(@RequestBody @Valid Product feed)
 	{
-		return new ResponseEntity<>(feedService.create(feed), HttpStatus.CREATED);
+		return null;//new ResponseEntity<>(feedService.create(feed), HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "no-auth/feed/latest", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<List<Feed>> getLatestWithOutAuth(@RequestParam("limit") int limit, @RequestParam("offset") int offset)
+	public ResponseEntity<List<Product>> getLatestWithOutAuth(@RequestParam("limit") int limit, @RequestParam("offset") int offset)
 	{
-		List<Feed> feeds = feedService.getLatest(null, limit, offset);
-		if (feeds.isEmpty())
-		{
-			return new ResponseEntity<>(feeds, HttpStatus.NO_CONTENT);
-		}
+//		List<Product> feeds = feedService.getLatest(null, limit, offset);
+//		if (feeds.isEmpty())
+//		{
+//			return new ResponseEntity<>(feeds, HttpStatus.NO_CONTENT);
+//		}
 
-		return new ResponseEntity<>(feeds, HttpStatus.OK);
+		return null;//new ResponseEntity<>(feeds, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "feed/latest", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<List<Feed>> getLatest(@RequestParam("limit") int limit, @RequestParam("offset") int offset)
+	public ResponseEntity<List<Product>> getLatest(@RequestParam("limit") int limit, @RequestParam("offset") int offset)
 	{
-		UserEntity userEntity = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		List<Feed> feeds = feedService.getLatest(userEntity.getId(), limit, offset);
+//		UserEntity userEntity = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		List<Product> feeds = feedService.getLatest(userEntity.getId(), limit, offset);
+//
+//		if (feeds.isEmpty())
+//		{
+//			return new ResponseEntity<>(feeds, HttpStatus.NO_CONTENT);
+//		}
 
-		if (feeds.isEmpty())
-		{
-			return new ResponseEntity<>(feeds, HttpStatus.NO_CONTENT);
-		}
-
-		return new ResponseEntity<>(feeds, HttpStatus.OK);
+		return null;//new ResponseEntity<>(feeds, HttpStatus.OK);
 	}
 }

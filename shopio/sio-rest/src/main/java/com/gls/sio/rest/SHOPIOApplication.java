@@ -22,13 +22,12 @@ import com.gls.sio.rest.factory.contant.PackageConstants;
 @EntityScan(basePackages = {
         PackageConstants.PERSISTENT_ENTITY
 })
-@PropertySource("classpath:persistent.properties")
 @PropertySource("classpath:liquibase.properties")
 @PropertySource("classpath:file.properties")
 public class SHOPIOApplication
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(SHOPIOApplication.class, args);
+       //Day la nhanh test_01
     }
 }

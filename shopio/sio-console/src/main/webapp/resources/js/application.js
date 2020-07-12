@@ -1,5 +1,21 @@
 $(function() {
 
+	$("#loginModal").dialog({
+		modal : true,
+		minWidth : 350,
+		closeOnEscape: false,
+		open : function(event, ui) {
+			$(".ui-widget-overlay").css({
+				background : "#DDDDDD",
+				opacity : 1
+			});
+			
+			$(".ui-dialog .ui-dialog-titlebar-close").css({
+				display: "none"
+			});
+		}
+	});
+
 	$("#addProductModal").dialog({
 		autoOpen : false,
 		modal : true,
@@ -9,7 +25,23 @@ $(function() {
 			resetProductModal();
 		}
 	});
-
+	
+	$("#accessDeniedModal").dialog({
+		modal : true,
+		minWidth : 500,
+		closeOnEscape: false,
+		open : function(event, ui) {
+			$(".ui-widget-overlay").css({
+				background : "#DDDDDD",
+				opacity : 1
+			});
+			
+			$(".ui-dialog .ui-dialog-titlebar-close").css({
+				display: "none"
+			});
+		}
+	});
+	
 	$("#btnAddProduct").on("click", function(e) {
 		e.preventDefault();
 		$("#addProductModal").dialog("open");
@@ -17,6 +49,14 @@ $(function() {
 
 	$("#btnChooseFile").change(function() {
 		showImage(this);
+	});
+	
+	$("#ssoId").keyup(function() {
+		$("#loginErrorMessage").hide();
+	});
+	
+	$("#password").keyup(function() {
+		$("#loginErrorMessage").hide();
 	});
 
 	function resetProductModal() {

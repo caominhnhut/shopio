@@ -212,6 +212,9 @@
         <dependent-module archiveName="commons-codec-1.10.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/commons-codec/commons-codec/1.10/commons-codec-1.10.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="junit-3.8.1.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="spring-webmvc-4.2.5.RELEASE.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/org/springframework/spring-webmvc/4.2.5.RELEASE/spring-webmvc-4.2.5.RELEASE.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -255,9 +258,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="snakeyaml-1.16.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/org/yaml/snakeyaml/1.16/snakeyaml-1.16.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="junit-4.12.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/junit/junit/4.12/junit-4.12.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="hamcrest-core-1.3.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar">

@@ -5,7 +5,7 @@
 <tiles-definitions>
 
 	<!-- Base Define -->
-	<definition name="base.definition"
+	<definition name="web.shopio"
 		template="/WEB-INF/layouts/classic.jsp">
 		<put-attribute name="title" value="" />
 		<put-attribute name="header" value="/WEB-INF/templates/header.jsp" />
@@ -14,16 +14,22 @@
 		<put-attribute name="footer" value="/WEB-INF/templates/footer.jsp" />
 	</definition>
 
-	<!-- Home Page -->
-	<definition name="homePage" extends="base.definition">
-		<put-attribute name="title" value="Home Page" />
-		<put-attribute name="body" value="/WEB-INF/pages/home.jsp" />
+	<!-- Login Page -->
+	<definition name="loginPage" extends="web.shopio">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="body" value="/WEB-INF/pages/login.jsp" />
 	</definition>
 
-	<!-- ContactUs Page -->
-	<definition name="productPage" extends="base.definition">
+	<!-- Product Page -->
+	<definition name="productPage" extends="web.shopio">
 		<put-attribute name="title" value="Product Management" />
 		<put-attribute name="body" value="/WEB-INF/pages/product.jsp" />
+	</definition>
+	
+	<!-- Access Denied Page -->
+	<definition name="accessDeniedPage" extends="web.shopio">
+		<put-attribute name="title" value="Access Denied" />
+		<put-attribute name="body" value="/WEB-INF/pages/access-denied.jsp" />
 	</definition>
 	
 </tiles-definitions>
