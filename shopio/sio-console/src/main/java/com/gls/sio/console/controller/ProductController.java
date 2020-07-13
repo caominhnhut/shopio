@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +24,6 @@ import com.google.common.base.Strings;
 @Controller
 @RequestMapping(value = "/")
 public class ProductController {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
 	private static final String PRODUCTS_VIEW = "listOfProductPage";
 	private static final String CREATE_UPDATE_PRODUCT_VIEW = "createOrUpdateProductPage";
@@ -61,11 +57,9 @@ public class ProductController {
 	@RequestMapping(value = "product/save-or-update", method = RequestMethod.POST)
 	public ModelAndView saveOrUpdate(HttpServletRequest servletRequest, @ModelAttribute Product product, ModelMap model) {
 
-		LOGGER.info(String.format("Saving product: [%s]", product));
-
 		ModelAndView modelAndView = new ModelAndView(CREATE_UPDATE_PRODUCT_VIEW);
 
-		Errors errors = requestValidator.validateProduct(product);
+		Errors errors = requestValidator.validateRequest(product);
 		if (!errors.getErrors().isEmpty()) {			
 			modelAndView.addObject("errorList", errors);
 			

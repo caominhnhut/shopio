@@ -32,11 +32,6 @@ $(function() {
 		}
 	});
 
-	$("#btnAddProduct").on("click", function(e) {
-		e.preventDefault();
-		$("#addProductModal").dialog("open");
-	});
-
 	$("#btnChooseFile").change(function() {
 		showImage(this);
 	});
@@ -49,15 +44,49 @@ $(function() {
 		$("#loginErrorMessage").hide();
 	});
 
+	$("#txtProductCode").keyup(function() {
+		$("#lbProductCodeError").hide();
+		$("#lbProductError").hide();
+	});
+	
+	$("#txtProductName").keyup(function() {
+		$("#lbProductNameError").hide();
+		$("#lbProductError").hide();
+	});
+	
+	$("#txtCostPrice").keyup(function() {
+		$("#lbCostPriceError").hide();
+		$("#lbProductError").hide();
+	});
+	
+	$("#txtSellingPrice").keyup(function() {
+		$("#lbSellingPriceError").hide();
+		$("#lbProductError").hide();
+	});
+	
+	$("#btnResetDataOnProductForm").click(function(){
+		resetProductModal();
+	});
+	
 	function resetProductModal() {
 		$("#txtProductCode").val('');
 		$("#txtProductName").val('');
-		$("#txtCostPrice").val('');
-		$("#txtSellingPrice").val('');
-		$("#categories").val('1');
-		$("#imgProduct").attr('src', 'asset/pictures-icon.png');
+		$("#txtCostPrice").val(0);
+		$("#txtSellingPrice").val(0);
+		$("#imgProduct").attr('src', '/sio-console/asset/pictures-icon.png');
+		
+		cleanUpErrorMessageOnProductForm();
 	}
 
+	function cleanUpErrorMessageOnProductForm()
+	{
+		$("#lbProductCodeError").hide();
+		$("#lbProductNameError").hide();
+		$("#lbCostPriceError").hide();
+		$("#lbSellingPriceError").hide();
+		$("#lbProductError").hide();
+	}
+	
 	function showImage(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();

@@ -24,25 +24,25 @@
 				<div>
 					<form:input path="code" type="text" id="txtProductCode" placeholder="Product Code" />
 					<c:if test="${not empty errorList}">
-						<label><c:out value="${errorList.errors['PRODUCT_CODE_ERROR']}"></c:out></label>
+						<label id="lbProductCodeError"><c:out value="${errorList.errors['PRODUCT_CODE_ERROR']}"></c:out></label>
 					</c:if>
 				</div>
 				<div>
 					<form:input path="name" type="text" id="txtProductName" placeholder="Product Name" />
 					<c:if test="${not empty errorList}">
-						<label><c:out value="${errorList.errors['PRODUCT_NAME_ERROR']}"></c:out></label>
+						<label id="lbProductNameError"><c:out value="${errorList.errors['PRODUCT_NAME_ERROR']}"></c:out></label>
 					</c:if>
 				</div>
 				<div>
 					<form:input path="costPrice" type="number" id="txtCostPrice" placeholder="Cost Price" min="0" />
 					<c:if test="${not empty errorList}">
-						<label><c:out value="${errorList.errors['PRODUCT_COST_PRICE_ERROR']}"></c:out></label>
+						<label id="lbCostPriceError"><c:out value="${errorList.errors['PRODUCT_COST_PRICE_ERROR']}"></c:out></label>
 					</c:if>
 				</div>
 				<div>
 					<form:input path="sellingPrice" type="number" id="txtSellingPrice" placeholder="Selling Price" min="0" />
 					<c:if test="${not empty errorList}">
-						<label><c:out value="${errorList.errors['PRODUCT_SELLING_PRICE_ERROR']}"></c:out></label>
+						<label id="lbSellingPriceError"><c:out value="${errorList.errors['PRODUCT_SELLING_PRICE_ERROR']}"></c:out></label>
 					</c:if>
 				</div>
 				<div>
@@ -56,8 +56,9 @@
 					</c:if>
 				</div>
 				<input type="submit" class="btn btn-primary" value="Create">
+				<input type="button" class="btn btn-danger" value="Reset" id="btnResetDataOnProductForm">
 				<c:if test="${not empty errorMessage}">
-					<div class="alert alert-danger">${errorMessage}</div>
+					<div id="lbProductError" class="alert alert-danger">${errorMessage}</div>
 				</c:if>
 			</div>
 		</div>

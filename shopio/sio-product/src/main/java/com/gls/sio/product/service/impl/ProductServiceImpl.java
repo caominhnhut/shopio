@@ -22,6 +22,7 @@ import com.gls.sio.product.model.Category;
 import com.gls.sio.product.model.DataResponse;
 import com.gls.sio.product.model.Product;
 import com.gls.sio.product.service.ProductService;
+import com.google.common.base.Strings;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -30,6 +31,7 @@ public class ProductServiceImpl implements ProductService {
 
 	private static final String SAVE_PRODUCT_ERROR_MESSAGE = "Error when saving product with product code: [%s]. Please try again in 5 minutes";
 	private static final String SAVE_PRODUCT_MESSAGE = "Saving product with product code [%s]";
+	private static final String PRODUCT_PRICES_ERROR_MESSAGE = "The selling price must be greater than the cost price is 15.000";
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -48,6 +50,14 @@ public class ProductServiceImpl implements ProductService {
 
 		LOGGER.info(String.format(SAVE_PRODUCT_MESSAGE, product.getCode()));
 
+		DataResponse<Product> dataResponse = new DataResponse<Product>();
+
+		String validationResut = validateProduct(product);
+		if (Strings.isNullOrEmpty(validationResut)) {
+			dataResponse.setErrorMessage(validationResut);
+			return dataResponse;
+		}
+
 		ProductEntity productEntity = mapper.mapFromProduct(product);
 
 		for (MultipartFile image : product.getImages()) {
@@ -60,8 +70,6 @@ public class ProductServiceImpl implements ProductService {
 
 		CategoryEntity categoryEntity = categoryRepository.findOne(product.getCategory());
 		productEntity.setCategory(categoryEntity);
-
-		DataResponse<Product> dataResponse = new DataResponse<Product>();
 
 		try {
 
@@ -84,4 +92,14 @@ public class ProductServiceImpl implements ProductService {
 
 		return categories.stream().map(mapper::mapToCategory).collect(Collectors.toList());
 	}
+
+	private String validateProduct(Product product) {
+
+		if (product.getSellingPrice() - product.getCostPrice() < 15000) {
+			return PRODUCT_PRICES_ERROR_MESSAGE;
+		}
+
+		return null;
+	}
+
 }
