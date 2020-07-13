@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
 		DataResponse<Product> dataResponse = new DataResponse<Product>();
 
 		String validationResut = validateProduct(product);
-		if (Strings.isNullOrEmpty(validationResut)) {
+		if (!Strings.isNullOrEmpty(validationResut)) {
 			dataResponse.setErrorMessage(validationResut);
 			return dataResponse;
 		}
