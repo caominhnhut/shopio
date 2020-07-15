@@ -8,7 +8,9 @@ import com.gls.sio.product.model.Product;
 
 public interface ProductService
 {
-	DataResponse create(Product product);
+	DataResponse<Product> create(Product product);
+	
+	List<Product> getProducts();
 	
 	List<Category> getCategories();
 }

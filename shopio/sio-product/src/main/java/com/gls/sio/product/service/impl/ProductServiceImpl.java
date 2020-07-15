@@ -102,4 +102,10 @@ public class ProductServiceImpl implements ProductService {
 		return null;
 	}
 
+	@Override
+	public List<Product> getProducts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
