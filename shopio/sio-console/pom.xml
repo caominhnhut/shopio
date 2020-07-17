@@ -13,7 +13,7 @@
 	<version>${parent.version}</version>
 
 	<properties>
-		<springframework.version>4.2.5.RELEASE</springframework.version>
+		<springframework.version>5.2.7.RELEASE</springframework.version>
 		<springsecurity.version>4.0.4.RELEASE</springsecurity.version>
 	</properties>
 
