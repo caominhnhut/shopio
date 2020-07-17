@@ -15,6 +15,7 @@ import com.gls.sio.persistent.entity.CategoryEntity;
 import com.gls.sio.persistent.entity.FileEntity;
 import com.gls.sio.persistent.entity.ProductEntity;
 import com.gls.sio.persistent.entity.UserEntity;
+import com.gls.sio.persistent.model.ProductRequest;
 import com.gls.sio.persistent.repository.CategoryRepository;
 import com.gls.sio.persistent.repository.ProductRepository;
 import com.gls.sio.product.mapper.Mapper;
@@ -103,9 +104,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> getProducts() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> getProducts(ProductRequest productRequest) {
+		
+		List<ProductEntity> productEntities = productRepository.getProducts(productRequest);
+		
+		return productEntities.stream().map(mapper::mapFromProductEntity).collect(Collectors.toList());
 	}
-
 }

@@ -47,6 +47,7 @@ public class ProductRepositoryImpl extends AbstractGenericDao<ProductEntity> imp
 		
 		List<Predicate> predicates = getFilterPredicate(productRequest, productEntityRoot, cb);
 		cq.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
+		cq.orderBy(cb.desc(productEntityRoot.get(ProductEntity_.timestampCreated)));
 		
 		TypedQuery<ProductEntity> query = em.createQuery(cq);
 		query.setFirstResult((offset-1)*limit);

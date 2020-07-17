@@ -176,6 +176,11 @@ html, body, .web-container, .row {
 	border: 1px solid #dddddd;
 }
 
+.product img{
+	width: 50px;
+	height: 50px;
+}
+
 #createOrUpdateProduct {
 	padding-top: 30px;
 }

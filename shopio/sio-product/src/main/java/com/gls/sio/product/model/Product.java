@@ -1,12 +1,13 @@
 package com.gls.sio.product.model;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
 public class Product {
-	
+
 	private Long id;
 	private String code;
 	private String name;
@@ -14,20 +15,18 @@ public class Product {
 	private long sellingPrice;
 	private long category;
 	private List<MultipartFile> images;
-	private Calendar createdDate;
+	private String createdDate;
+	private String modifiedDate;
+	private List<String> imageUris;
 
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("\nid: ").append(this.id)
-		.append("\ncode: ").append(this.code)
-		.append("\nname: ").append(this.name)
-		.append("\ncostPrice: ").append(this.costPrice)
-		.append("\nsellingPrice: ").append(this.sellingPrice)
-		.append("\ncategory: ").append(this.category)
-		.append("\nimages: ").append(images.size());
-		
+		builder.append("\nid: ").append(this.id).append("\ncode: ").append(this.code).append("\nname: ")
+				.append(this.name).append("\ncostPrice: ").append(this.costPrice).append("\nsellingPrice: ")
+				.append(this.sellingPrice).append("\ncategory: ").append(this.category).append("\nimages: ")
+				.append(images.size());
+
 		return builder.toString();
 	}
 
@@ -79,11 +78,11 @@ public class Product {
 		this.category = category;
 	}
 
-	public Calendar getCreatedDate() {
+	public String getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Calendar createdDate) {
+	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
 
@@ -93,5 +92,21 @@ public class Product {
 
 	public void setImages(List<MultipartFile> images) {
 		this.images = images;
+	}
+
+	public List<String> getImageUris() {
+		if (imageUris == null) {
+			imageUris = new ArrayList<String>();
+		}
+
+		return imageUris;
+	}
+
+	public String getModifiedDate() {
+		return modifiedDate;
+	}
+
+	public void setModifiedDate(String modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 }

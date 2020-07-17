@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gls.sio.console.validator.Errors;
 import com.gls.sio.console.validator.RequestValidator;
+import com.gls.sio.persistent.model.ProductRequest;
 import com.gls.sio.product.model.Category;
 import com.gls.sio.product.model.DataResponse;
 import com.gls.sio.product.model.Product;
@@ -35,15 +36,17 @@ public class ProductController {
 	private RequestValidator requestValidator;
 
 	@RequestMapping(value = { "product", "product/list" }, method = RequestMethod.GET)
-	public String showProductListPage(Model model) {
+	public ModelAndView showProductsView() {
 		
-		model.addAttribute("product", new Product());
+		ModelAndView modelAndView = new ModelAndView(PRODUCTS_VIEW);
+		List<Product> products = productService.getProducts(new ProductRequest());
+		modelAndView.addObject("products", products);
 		
-		return PRODUCTS_VIEW;
+		return modelAndView;
 	}
 
 	@RequestMapping(value = { "product/save-or-update" }, method = RequestMethod.GET)
-	public ModelAndView showCreateProductPage() {
+	public ModelAndView showCreateOrUpdateView() {
 
 		ModelAndView modelView = new ModelAndView(CREATE_UPDATE_PRODUCT_VIEW);
 		modelView.addObject("product", new Product());

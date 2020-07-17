@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,7 +45,7 @@ public class ProductEntity extends BaseTimestamp {
 	@JoinColumn(name = "category_id")
 	private CategoryEntity category;
 	
-	@OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, orphanRemoval = true)
+	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, orphanRemoval = true)
 	private Set<FileEntity> files;
 	
 	public ProductEntity() {
@@ -108,6 +109,11 @@ public class ProductEntity extends BaseTimestamp {
 	}
 
 	public Set<FileEntity> getFiles() {
+		if(files == null)
+		{
+			files = new HashSet<FileEntity>();
+		}
+		
 		return files;
 	}
 

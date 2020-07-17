@@ -33,7 +33,7 @@ public class FileEntity
     @Column(name = "file_download_uri")
     private String fileDownloadUri;
     
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "product_id")
     private ProductEntity product;
 
