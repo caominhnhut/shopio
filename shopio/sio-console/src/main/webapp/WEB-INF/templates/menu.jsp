@@ -79,9 +79,9 @@
 				<div class="card-body">
 					<ul>
 						<c:url var="listOfProductUrl" value="/product/list"></c:url>
-						<c:url var="createOrUpdateProductUrl" value="/product/save-or-update"></c:url>
+						<c:url var="createProductUrl" value="/product/save"></c:url>
 						<li><a href="${listOfProductUrl}">Product List</a></li>
-						<li><a href="${createOrUpdateProductUrl}">Add New Product</a></li>
+						<li><a href="${createProductUrl}">Add New Product</a></li>
 					</ul>
 				</div>
 			</div>

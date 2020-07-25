@@ -8,7 +8,14 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="image">
-					<img id="imgProduct" src="<c:url value="/asset/pictures-icon.png" />" />
+					<c:choose>
+						<c:when test="${not empty product.imageUris}">
+							<img id="imgProduct" src="<c:url value="${product.imageUris[0]}" />" />		
+						</c:when>
+						<c:otherwise>
+							<img id="imgProduct" src="<c:url value="/asset/pictures-icon.png" />" />
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div>
 					<input id="btnChooseFile" type="file" name="images" multiple="multiple">
@@ -21,7 +28,7 @@
 				<div>
 					<form:hidden path="id" />
 				</div>
-				<div>
+				<div>					
 					<form:input path="code" type="text" id="txtProductCode" placeholder="Product Code" />
 					<c:if test="${not empty errorList}">
 						<label id="lbProductCodeError"><c:out value="${errorList.errors['PRODUCT_CODE_ERROR']}"></c:out></label>
@@ -47,8 +54,15 @@
 				</div>
 				<div>
 					<form:select path="category" id="category">
-						<c:forEach var="category" items="${categories}">							
-							<option value="${category.id}">${category.name}</option>
+						<c:forEach var="category" items="${categories}">
+							<c:choose>
+								<c:when test="${category.id == product.category}">
+									<option selected="true" value="${category.id}">${category.name}</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${category.id}">${category.name}</option>		
+								</c:otherwise>
+							</c:choose>
 						</c:forEach>
 					</form:select>
 					<c:if test="${not empty errorList}">

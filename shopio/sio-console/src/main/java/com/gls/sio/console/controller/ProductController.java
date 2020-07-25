@@ -6,11 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gls.sio.console.validator.Errors;
@@ -45,11 +45,28 @@ public class ProductController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = { "product/save-or-update" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "product/save" }, method = RequestMethod.GET)
 	public ModelAndView showCreateOrUpdateView() {
-
+		
 		ModelAndView modelView = new ModelAndView(CREATE_UPDATE_PRODUCT_VIEW);
 		modelView.addObject("product", new Product());
+
+		List<Category> categories = productService.getCategories();
+		modelView.addObject("categories", categories);
+
+		return modelView;
+	}
+	
+	@RequestMapping(value = { "product/update" }, method = RequestMethod.GET)
+	public ModelAndView showCreateOrUpdateView(@RequestParam("productId") Long productId) {
+
+		ModelAndView modelView = new ModelAndView(CREATE_UPDATE_PRODUCT_VIEW);
+		
+		ProductRequest productRequest = new ProductRequest();
+		productRequest.setId(productId);
+		List<Product> products = productService.getProducts(productRequest);
+		Product product = products.stream().findFirst().orElse(null);
+		modelView.addObject("product", product);
 
 		List<Category> categories = productService.getCategories();
 		modelView.addObject("categories", categories);
@@ -60,26 +77,30 @@ public class ProductController {
 	@RequestMapping(value = "product/save-or-update", method = RequestMethod.POST)
 	public ModelAndView saveOrUpdate(HttpServletRequest servletRequest, @ModelAttribute Product product, ModelMap model) {
 
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>product: "+product);
+		
 		ModelAndView modelAndView = new ModelAndView(CREATE_UPDATE_PRODUCT_VIEW);
+		
+		//TODO: Need to update the flow for updating product
 
-		Errors errors = requestValidator.validateRequest(product);
-		if (!errors.getErrors().isEmpty()) {			
-			modelAndView.addObject("errorList", errors);
-			
-			List<Category> categories = productService.getCategories();
-			modelAndView.addObject("categories", categories);
-			
-			return modelAndView;
-		}
-
-		DataResponse<Product> dataResponse = productService.create(product);
-
-		if (!Strings.isNullOrEmpty(dataResponse.getErrorMessage())) {
-			modelAndView.addObject("errorMessage", dataResponse.getErrorMessage());
-			return modelAndView;
-		}
-
-		modelAndView.setViewName(PRODUCTS_VIEW);
+//		Errors errors = requestValidator.validateRequest(product);
+//		if (!errors.getErrors().isEmpty()) {			
+//			modelAndView.addObject("errorList", errors);
+//			
+//			List<Category> categories = productService.getCategories();
+//			modelAndView.addObject("categories", categories);
+//			
+//			return modelAndView;
+//		}
+//
+//		DataResponse<Product> dataResponse = productService.create(product);
+//
+//		if (!Strings.isNullOrEmpty(dataResponse.getErrorMessage())) {
+//			modelAndView.addObject("errorMessage", dataResponse.getErrorMessage());
+//			return modelAndView;
+//		}
+//
+//		modelAndView.setViewName(PRODUCTS_VIEW);
 		return modelAndView;
 	}
 }

@@ -60,6 +60,8 @@ public class ProductRepositoryImpl extends AbstractGenericDao<ProductEntity> imp
 	{
 		List<Predicate> predicates = new ArrayList<Predicate>();
 		
+		addPredicateWithLong(productRequest.getId(), predicates, productId -> cb.equal(productEntityRoot.get(ProductEntity_.id), productId));
+		
 		addPredicateWithString(productRequest.getCode(), predicates, code -> cb.like(productEntityRoot.get(ProductEntity_.code), encloseWithWildCard(code.toUpperCase())));
 		
 		addPredicateWithString(productRequest.getName(), predicates, name -> cb.like(productEntityRoot.get(ProductEntity_.name), encloseWithWildCard(name)));

@@ -37,7 +37,8 @@
 								</td>
 								
 								<td class="cell100 column6">
-									<button><i class="glyphicon glyphicon-pencil"></i></button>
+									<c:url var="productSaveOrUpdateUrl" value="/product/update?productId=${product.id}" />
+									<a href="${productSaveOrUpdateUrl}"><i class="glyphicon glyphicon-pencil"></i></a>
 									<button><i class="glyphicon glyphicon-trash"></i></button>
 								</td>
 							</tr>	

@@ -37,10 +37,11 @@ public class Mapper {
 	public Product mapFromProductEntity(ProductEntity productEntity) {
 
 		Product product = new Product();
+		product.setId(productEntity.getId());
 		product.setCode(productEntity.getCode());
 		product.setName(productEntity.getName());
 		product.setCostPrice(productEntity.getCostPrice());
-		product.setSellingPrice(product.getSellingPrice());
+		product.setSellingPrice(productEntity.getSellingPrice());
 		product.setCreatedDate(formatDate(productEntity.getTimestampCreated()));
 		product.setModifiedDate(formatDate(productEntity.getTimestampModified()));
 		product.setCategory(productEntity.getCategory().getId());
