@@ -76,8 +76,6 @@ public class ProductController {
 
 	@RequestMapping(value = "product/save-or-update", method = RequestMethod.POST)
 	public ModelAndView saveOrUpdate(HttpServletRequest servletRequest, @ModelAttribute Product product, ModelMap model) {
-
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>product: "+product);
 		
 		ModelAndView modelAndView = new ModelAndView(CREATE_UPDATE_PRODUCT_VIEW);
 		
