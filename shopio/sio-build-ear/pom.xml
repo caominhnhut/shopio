@@ -28,12 +28,6 @@
 		</dependency>
 		<dependency>
 			<groupId>gls.shopio</groupId>
-			<artifactId>sio-rest</artifactId>
-			<version>${parent.version}</version>
-			<type>ejb</type>
-		</dependency>
-		<dependency>
-			<groupId>gls.shopio</groupId>
 			<artifactId>sio-product</artifactId>
 			<version>${parent.version}</version>
 			<type>ejb</type>
@@ -96,11 +90,6 @@
 							<groupId>gls.shopio</groupId>
 							<artifactId>sio-topic</artifactId>
 							<bundleFileName>sio-topic.jar</bundleFileName>
-						</ejbModule>
-						<ejbModule>
-							<groupId>gls.shopio</groupId>
-							<artifactId>sio-rest</artifactId>
-							<bundleFileName>sio-rest.jar</bundleFileName>
 						</ejbModule>
 						<ejbModule>
 							<groupId>gls.shopio</groupId>
