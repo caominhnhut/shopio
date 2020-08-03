@@ -9,8 +9,8 @@
 			<div class="col-md-4">
 				<div class="image">
 					<c:choose>
-						<c:when test="${not empty product.imageUris}">
-							<img id="imgProduct" src="<c:url value="${product.imageUris[0]}" />" />		
+						<c:when test="${not empty product.fileDownloadUri}">
+							<img id="imgProduct" src="<c:url value="${product.fileDownloadUri}" />" />		
 						</c:when>
 						<c:otherwise>
 							<img id="imgProduct" src="<c:url value="/asset/pictures-icon.png" />" />
@@ -27,32 +27,38 @@
 			<div class="col-md-8">
 				<div>
 					<form:hidden path="id" />
+					<form:hidden path="fileDownloadUri" id="fileDownloadUri"/>
 				</div>
-				<div>					
-					<form:input path="code" type="text" id="txtProductCode" placeholder="Product Code" />
+				<div>
+					<h3>Product Code: </h3>
+					<form:input path="code" type="text" id="txtProductCode"/>
 					<c:if test="${not empty errorList}">
 						<label id="lbProductCodeError"><c:out value="${errorList.errors['PRODUCT_CODE_ERROR']}"></c:out></label>
 					</c:if>
 				</div>
 				<div>
-					<form:input path="name" type="text" id="txtProductName" placeholder="Product Name" />
+					<h3>Product Name: </h3>
+					<form:input path="name" type="text" id="txtProductName"/>
 					<c:if test="${not empty errorList}">
 						<label id="lbProductNameError"><c:out value="${errorList.errors['PRODUCT_NAME_ERROR']}"></c:out></label>
 					</c:if>
 				</div>
 				<div>
-					<form:input path="costPrice" type="number" id="txtCostPrice" placeholder="Cost Price" min="0" />
+					<h3>Cost Price: </h3>
+					<form:input path="costPrice" type="number" id="txtCostPrice" min="0" />
 					<c:if test="${not empty errorList}">
 						<label id="lbCostPriceError"><c:out value="${errorList.errors['PRODUCT_COST_PRICE_ERROR']}"></c:out></label>
 					</c:if>
 				</div>
 				<div>
-					<form:input path="sellingPrice" type="number" id="txtSellingPrice" placeholder="Selling Price" min="0" />
+					<h3>Selling Price: </h3>
+					<form:input path="sellingPrice" type="number" id="txtSellingPrice" min="0" />
 					<c:if test="${not empty errorList}">
 						<label id="lbSellingPriceError"><c:out value="${errorList.errors['PRODUCT_SELLING_PRICE_ERROR']}"></c:out></label>
 					</c:if>
 				</div>
 				<div>
+					<h3>Category: </h3>
 					<form:select path="category" id="category">
 						<c:forEach var="category" items="${categories}">
 							<c:choose>

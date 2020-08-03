@@ -47,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
 	private Mapper mapper;
 
 	@Override
-	public DataResponse<Product> create(Product product) {
+	public DataResponse<Product> createOrUpdate(Product product) {
 
 		LOGGER.info(String.format(SAVE_PRODUCT_MESSAGE, product.getCode()));
 
@@ -59,27 +59,14 @@ public class ProductServiceImpl implements ProductService {
 			return dataResponse;
 		}
 
-		ProductEntity productEntity = mapper.mapFromProduct(product);
-
-		for (MultipartFile image : product.getImages()) {
-			FileEntity fileEntity = fileService.storeFile(image);
-			fileEntity.setProduct(productEntity);
-		}
-
-		UserEntity userEntity = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		productEntity.setOwner(userEntity);
-
-		CategoryEntity categoryEntity = categoryRepository.findOne(product.getCategory());
-		productEntity.setCategory(categoryEntity);
-
 		try {
-
-			ProductEntity createdProduct = productRepository.create(productEntity);
-			product.setId(createdProduct.getId());
-			dataResponse.setData(product);
-
+			if (product.getId() == null) {
+				dataResponse.setData(create(product));
+			} else {
+				update(product);
+				dataResponse.setData(product);
+			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			dataResponse.setErrorMessage(String.format(SAVE_PRODUCT_ERROR_MESSAGE, product.getCode()));
 		}
 
@@ -94,6 +81,70 @@ public class ProductServiceImpl implements ProductService {
 		return categories.stream().map(mapper::mapToCategory).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<Product> getProducts(ProductRequest productRequest) {
+
+		List<ProductEntity> productEntities = productRepository.getProducts(productRequest);
+
+		return productEntities.stream().map(mapper::mapFromProductEntity).collect(Collectors.toList());
+	}
+
+	private Product create(Product product) {
+
+		ProductEntity productEntity = mapper.mapFromProduct(product);
+
+		for (MultipartFile image : product.getImages()) {
+			FileEntity fileEntity = fileService.storeFile(image);
+			fileEntity.setProduct(productEntity);
+		}
+
+		UserEntity userEntity = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		productEntity.setOwner(userEntity);
+
+		CategoryEntity categoryEntity = categoryRepository.findOne(product.getCategory());
+		productEntity.setCategory(categoryEntity);
+
+		ProductEntity createdProduct = productRepository.create(productEntity);
+		product.setId(createdProduct.getId());
+
+		return product;
+	}
+
+	private void update(Product product) {
+
+		ProductRequest productRequest = new ProductRequest();
+		productRequest.setId(product.getId());
+		ProductEntity updatedProduct = productRepository.getProducts(productRequest).get(0);
+
+		updatedProduct = mapper.mapProductForUpdating(updatedProduct, product);
+
+		if (updatedProduct.getCategory().getId() != product.getId()) {
+
+			CategoryEntity categoryEntity = categoryRepository.findOne(product.getCategory());
+			updatedProduct.setCategory(categoryEntity);
+		}
+
+		if (product.getFileDownloadUri().equals(updatedProduct.getFiles().stream().findFirst().get().getFileDownloadUri())) {
+
+			productRepository.update(updatedProduct);
+			return;
+		}
+
+		// Delete old image from directory
+		fileService.detelePhysicalFile(updatedProduct.getFiles().stream().findFirst().get().getFileDownloadUri());
+
+		// Store new image
+		MultipartFile newImage = product.getImages().get(0);
+		FileEntity fileEntity = fileService.storeFile(newImage);
+		
+		FileEntity updatedFileEntity = fileService.findByProductId(product.getId());
+		updatedFileEntity.setFileDownloadUri(fileEntity.getFileDownloadUri());
+		updatedFileEntity.setFilename(fileEntity.getFilename());
+		updatedFileEntity.setFileType(fileEntity.getFileType());
+		fileService.update(updatedFileEntity);
+
+	}
+
 	private String validateProduct(Product product) {
 
 		if (product.getSellingPrice() - product.getCostPrice() < 15000) {
@@ -101,13 +152,5 @@ public class ProductServiceImpl implements ProductService {
 		}
 
 		return null;
-	}
-
-	@Override
-	public List<Product> getProducts(ProductRequest productRequest) {
-		
-		List<ProductEntity> productEntities = productRepository.getProducts(productRequest);
-		
-		return productEntities.stream().map(mapper::mapFromProductEntity).collect(Collectors.toList());
 	}
 }

@@ -11,4 +11,10 @@ public interface FileService
     FileEntity findById(Long id);
     
     FileEntity create(FileEntity fileEntity);
+    
+    void detelePhysicalFile(String filename);
+    
+    FileEntity findByProductId(Long productId);
+    
+    FileEntity update(FileEntity fileEntity);
 }

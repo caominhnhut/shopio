@@ -94,6 +94,8 @@ $(function() {
 			reader.onload = function(e) {
 				$('#imgProduct').attr('src', e.target.result);
 			}
+			
+			$('#fileDownloadUri').val(input.files[0].name);
 
 			reader.readAsDataURL(input.files[0]);
 		}

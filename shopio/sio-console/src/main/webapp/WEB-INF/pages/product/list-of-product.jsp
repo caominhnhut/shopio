@@ -33,7 +33,7 @@
 								<td class="cell100 column4"><c:out value="${product.sellingPrice}"></c:out></td>
 								<td class="cell100 column4"><c:out value="${product.createdDate}"></c:out></td>
 								<td class="cell100 column5">
-									<img src="<c:url value="${product.imageUris[0]}" />" />
+									<img src="<c:url value="${product.fileDownloadUri}" />" />
 								</td>
 								
 								<td class="cell100 column6">

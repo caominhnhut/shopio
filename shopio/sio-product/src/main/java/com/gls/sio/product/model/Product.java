@@ -1,6 +1,5 @@
 package com.gls.sio.product.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -16,7 +15,7 @@ public class Product {
 	private List<MultipartFile> images;
 	private String createdDate;
 	private String modifiedDate;
-	private List<String> imageUris;
+	private String fileDownloadUri;
 
 	@Override
 	public String toString() {
@@ -93,12 +92,12 @@ public class Product {
 		this.images = images;
 	}
 
-	public List<String> getImageUris() {
-		if (imageUris == null) {
-			imageUris = new ArrayList<String>();
-		}
+	public String getFileDownloadUri() {
+		return fileDownloadUri;
+	}
 
-		return imageUris;
+	public void setFileDownloadUri(String fileDownloadUri) {
+		this.fileDownloadUri = fileDownloadUri;
 	}
 
 	public String getModifiedDate() {

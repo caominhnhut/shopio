@@ -229,6 +229,10 @@ html, body, .web-container, .row {
 	margin-top: 10px;
 	width: 100%;
 }
+
+#createOrUpdateProduct h3 {
+	color: #aaaaaa;
+}
 /* LOGIN MODAL */
 #loginModal input {
 	width: 100%;

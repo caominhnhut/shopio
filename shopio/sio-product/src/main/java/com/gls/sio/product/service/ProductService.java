@@ -9,7 +9,7 @@ import com.gls.sio.product.model.Product;
 
 public interface ProductService
 {
-	DataResponse<Product> create(Product product);
+	DataResponse<Product> createOrUpdate(Product product);
 	
 	List<Product> getProducts(ProductRequest productRequest);
 	

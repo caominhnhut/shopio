@@ -75,30 +75,26 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "product/save-or-update", method = RequestMethod.POST)
-	public ModelAndView saveOrUpdate(HttpServletRequest servletRequest, @ModelAttribute Product product, ModelMap model) {
+	public String saveOrUpdate(HttpServletRequest servletRequest, @ModelAttribute Product product, ModelMap model) {
 		
-		ModelAndView modelAndView = new ModelAndView(CREATE_UPDATE_PRODUCT_VIEW);
+		Errors errors = requestValidator.validateRequest(product);
 		
-		//TODO: Need to update the flow for updating product
+		if (!errors.getErrors().isEmpty()) {			
+			model.put("errorList", errors);
+			
+			List<Category> categories = productService.getCategories();
+			model.put("categories", categories);
+			
+			return CREATE_UPDATE_PRODUCT_VIEW;
+		}
 
-//		Errors errors = requestValidator.validateRequest(product);
-//		if (!errors.getErrors().isEmpty()) {			
-//			modelAndView.addObject("errorList", errors);
-//			
-//			List<Category> categories = productService.getCategories();
-//			modelAndView.addObject("categories", categories);
-//			
-//			return modelAndView;
-//		}
-//
-//		DataResponse<Product> dataResponse = productService.create(product);
-//
-//		if (!Strings.isNullOrEmpty(dataResponse.getErrorMessage())) {
-//			modelAndView.addObject("errorMessage", dataResponse.getErrorMessage());
-//			return modelAndView;
-//		}
-//
-//		modelAndView.setViewName(PRODUCTS_VIEW);
-		return modelAndView;
+		DataResponse<Product> dataResponse = productService.createOrUpdate(product);
+
+		if (!Strings.isNullOrEmpty(dataResponse.getErrorMessage())) {
+			model.put("errorMessage", dataResponse.getErrorMessage());
+			return CREATE_UPDATE_PRODUCT_VIEW;
+		}
+
+		return "redirect:list";
 	}
 }

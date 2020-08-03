@@ -45,7 +45,7 @@ public class ProductEntity extends BaseTimestamp {
 	@JoinColumn(name = "category_id")
 	private CategoryEntity category;
 	
-	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, orphanRemoval = true)
+	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<FileEntity> files;
 	
 	public ProductEntity() {

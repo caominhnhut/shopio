@@ -5,5 +5,5 @@ import com.gls.sio.persistent.repository.common.GenericDao;
 
 public interface FileRepository extends GenericDao<FileEntity>
 {
-
+	FileEntity findByProductId(Long productId);
 }

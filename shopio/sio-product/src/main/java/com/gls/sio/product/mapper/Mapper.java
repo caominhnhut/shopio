@@ -3,8 +3,6 @@ package com.gls.sio.product.mapper;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -46,13 +44,34 @@ public class Mapper {
 		product.setModifiedDate(formatDate(productEntity.getTimestampModified()));
 		product.setCategory(productEntity.getCategory().getId());
 
-		List<String> imageUris = productEntity.getFiles().stream().map(FileEntity::getFileDownloadUri)
-				.collect(Collectors.toList());
-		product.getImageUris().addAll(imageUris);
+		FileEntity fileEntity = productEntity.getFiles().stream().findFirst().orElseGet(null);
+		
+		product.setFileDownloadUri(fileEntity.getFileDownloadUri());
 
 		return product;
 	}
 
+	public ProductEntity mapProductForUpdating(ProductEntity productEntity, Product product) {
+
+		if(!product.getCode().equals(productEntity.getCode())) {
+			productEntity.setCode(product.getCode());
+		}
+		
+		if(!product.getName().equals(productEntity.getName())) {
+			productEntity.setName(product.getName());
+		}
+		
+		if(product.getCostPrice() != productEntity.getCostPrice()) {
+			productEntity.setCostPrice(product.getCostPrice());
+		}
+		
+		if(product.getSellingPrice() != productEntity.getSellingPrice()) {
+			productEntity.setSellingPrice(product.getSellingPrice());
+		}
+
+		return productEntity;
+	}
+	
 	private String formatDate(Calendar calendar) {
 		
 		Date date = calendar.getTime();		
