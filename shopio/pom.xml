@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<!-- Spring IO Platform is the parent of the generated application to be 
 		able to use Spring Boot and all its default configuration -->
@@ -9,7 +7,7 @@
 		<groupId>io.spring.platform</groupId>
 		<artifactId>platform-bom</artifactId>
 		<version>2.0.3.RELEASE</version>
-		<relativePath />
+		<relativePath/>
 	</parent>
 
 	<groupId>gls.shopio</groupId>
@@ -29,6 +27,8 @@
 		<apache.tiles.version>3.0.7</apache.tiles.version>
 		<springframework.version>4.2.5.RELEASE</springframework.version>
 		<springsecurity.version>4.0.4.RELEASE</springsecurity.version>
+		<springwebsocket.version>4.2.5.RELEASE</springwebsocket.version>
+		<messaging.version>5.2.8.RELEASE</messaging.version>
 	</properties>
 
 	<modules>
@@ -42,7 +42,9 @@
 		<module>sio-file</module>
 		<module>sio-console</module>
 		<module>sio-build-ear</module>
-	</modules>
+    <module>sio-message</module>
+  <module>sio-portal</module>
+</modules>
 
 	<dependencies>
 		<dependency>
