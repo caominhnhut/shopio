@@ -1,0 +1,23 @@
+[
+	{
+		"productName": "NHÀ SỐ HỌC",
+		"oldPrice": "100.000",
+		"sellingPrice": "99.0000",
+		"amountOfSold": 10,
+		"currentAmount": 5,
+		"madeIn": "Việt Nam",
+		"size": "5x3x7",
+		"description": "Sản phẩm rất được ưa thích",
+		"images": [
+			"url1",
+			"url2"
+		],
+		"caterogies": [
+			"DO_CHOI_GO",
+			"DO_CHOI_GO",
+			"DO_CHOI_BE_TRAI",
+			"DO_CHOI_BE_TRAI",
+			"DO_CHOI_TRI_TUE"
+		]
+	}
+]

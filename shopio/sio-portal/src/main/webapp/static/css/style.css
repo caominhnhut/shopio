@@ -3,7 +3,6 @@
 	opacity: 1;
 }
 /* CUSTOM LIBRARY */
-
 .header {
 	background-color: #FF0066;
 	height: 100px;
@@ -113,8 +112,13 @@
 
 .contact ul li {
 	list-style-type: none;
-	margin-top: 20px;
-	height: 25px !important;
+    margin-top: 20px;
+    height: 30px !important;
+    border-radius: 7px;
+}
+
+.contact ul li:hover{
+    background-color: red;	
 }
 
 .products h4 {
@@ -227,6 +231,27 @@
 
 .product-detail button {
 	height: 40px;
+}
+
+.product-detail .small-images ul li {
+	width: 18%;
+	float: left;
+	height: 80px;
+	text-align: center;
+	border: 1px solid #dddddd;
+	padding: 5px;
+	cursor: pointer;
+	margin-right: 1.5px;
+}
+
+.product-detail .small-images ul li:hover {
+	border: 1px solid #AAAAAA;
+}
+
+.product-detail .small-images ul li img {
+	width: 100%;
+	height: 100%;
+	margin-top: 1%;
 }
 
 .related-products {

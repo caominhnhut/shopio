@@ -7,7 +7,11 @@ angular.module('myApp.productDetail', ['ngRoute'])
   });
 }])
 
-.controller('ProductDetailCtrl', ['$scope', '$rootScope', '$http', '$location',
-  function($scope, $rootScope, $http, $location){
-    $scope.message = "this is product detail page";
-  }]);
+.controller('ProductDetailCtrl', ['$scope', '$rootScope', '$http', '$location', function($scope, $rootScope, $http, $location){
+    
+	$scope.showImageByUrl = function(url){
+		console.log(url);
+		$('#mainImage').attr('src', url);
+	}
+	
+}]);
