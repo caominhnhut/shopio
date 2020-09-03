@@ -7,7 +7,20 @@ angular.module('myApp.products', ['ngRoute'])
   });
 }])
 
-.controller('ProductCtrl', ['$scope', '$rootScope', '$http', '$location',
-  function($scope, $rootScope, $http, $location){
-    $scope.message = "this is products page";
-  }]);
+.controller('ProductCtrl', ['$scope', '$rootScope', '$http', '$location', 'ServiceProvider',
+  function($scope, $rootScope, $http, $location, serviceProvider){
+	
+	$scope.getProducts = function(){
+		var promise = serviceProvider.getApi("sio-portal/static/json/product.json");
+		promise.then(function (response) {
+			$scope.products = response;
+			console.log($scope.products);
+		}, function (errorPayload) {
+			console.log('Can not get latest products', errorPayload);
+		})
+	}
+	
+	$scope.getProducts();
+  }
+
+]);
