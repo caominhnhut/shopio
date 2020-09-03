@@ -2,7 +2,7 @@ angular.module('myApp.home', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/home', {
-    templateUrl: 'ui/home/home.html',
+    templateUrl: 'sio-portal/static/ui/home/home.html',
     controller: 'HomeCtrl'
   });
 }])
@@ -31,5 +31,5 @@ angular.module('myApp.home', ['ngRoute'])
     			console.log('Can not get latest products', errorPayload);
     		})
     	}
-    $scope.getLatestProducts();
+    //$scope.getLatestProducts();
 }]);

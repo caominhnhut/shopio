@@ -2,7 +2,7 @@ angular.module('myApp.register', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/register', {
-    templateUrl: 'ui/register/register.html',
+    templateUrl: 'sio-portal/static/ui/register/register.html',
     controller: 'RegisterCtrl'
   });
 }])

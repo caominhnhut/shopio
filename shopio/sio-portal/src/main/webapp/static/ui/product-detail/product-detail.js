@@ -2,7 +2,7 @@ angular.module('myApp.productDetail', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/product/:productId', {
-    templateUrl: 'ui/product-detail/product-detail.html',
+    templateUrl: 'sio-portal/static/ui/product-detail/product-detail.html',
     controller: 'ProductDetailCtrl'
   });
 }])

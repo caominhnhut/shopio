@@ -1,7 +1,7 @@
 angular.module('myApp.products', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/', {
+  $routeProvider.when('/product', {
     templateUrl: 'sio-portal/static/ui/products/products.html',
     controller: 'ProductCtrl'
   });

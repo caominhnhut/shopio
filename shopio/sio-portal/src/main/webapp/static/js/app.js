@@ -11,9 +11,11 @@ angular.module('myApp', [
   'myApp.productDetail',
   'myApp.login',
   'myApp.register',
-  'myApp.shopBy',
+  'myApp.category',
   'myApp.shoppingCart',
   'myApp.navigation',
+  'myApp.policy',
+  'myApp.contact',
   'ui.bootstrap'
 ]).
 config(['$locationProvider', '$routeProvider', "$httpProvider", function($locationProvider, $routeProvider, $httpProvider) {
@@ -25,14 +27,14 @@ config(['$locationProvider', '$routeProvider', "$httpProvider", function($locati
 
     $scope.openLoginView = function() {
         var modalInstance =  $uibModal.open({
-            templateUrl: "ui/login/login.html",
+            templateUrl: "sio-portal/static/ui/login/login.html",
             controller: "LoginCtrl",
             size: '',
         });
 
         modalInstance.result.then(function(response){
             console.log("Response from login from", response);
-            $scope.result = `${response} button hitted`;
+            $scope.result = '${response} button hitted';
             console.log("Result from login form", $scope.result);
         });
     };

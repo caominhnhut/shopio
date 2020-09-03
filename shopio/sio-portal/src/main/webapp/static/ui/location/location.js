@@ -2,7 +2,7 @@ angular.module('myApp.location', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/location', {
-    templateUrl: 'ui/location/location.html',
+    templateUrl: 'sio-portal/static/ui/location/location.html',
     controller: 'LocationCtrl'
   });
 }])

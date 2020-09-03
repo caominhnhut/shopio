@@ -2,7 +2,7 @@ angular.module('myApp.login', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {
-    templateUrl: 'ui/login/login.html',
+    templateUrl: 'sio-portal/static/ui/login/login.html',
     controller: 'LoginCtrl'
   });
 }])
@@ -19,7 +19,7 @@ angular.module('myApp.login', ['ngRoute'])
         $uibModalInstance.dismiss();
 
         var modalInstance =  $uibModal.open({
-            templateUrl: "ui/register/register.html",
+            templateUrl: "sio-portal/static/ui/register/register.html",
             controller: "RegisterCtrl",
             size: '',
         });

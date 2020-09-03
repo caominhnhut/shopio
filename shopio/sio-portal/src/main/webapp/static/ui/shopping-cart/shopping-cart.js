@@ -2,7 +2,7 @@ angular.module('myApp.shoppingCart', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/cart', {
-    templateUrl: 'ui/shopping-cart/shopping-cart.html',
+    templateUrl: 'sio-portal/static/ui/shopping-cart/shopping-cart.html',
     controller: 'ShoppingCartCtrl'
   });
 }])

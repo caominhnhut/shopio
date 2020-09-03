@@ -14,23 +14,23 @@
     <div class="header">
         <div class="row">
             <div class="col-md-1"><img src="sio-portal/asset/logo.png"></div>
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <ul>
-                    <li><a href="#/home">Trang Chủ</a></li>
-                    <li><a href="#/">Sản Phẩm</a></li>
-                    <li><a href="#/location">Vị Trí</a></li>
-                    <li><a href="#/stories">Giới Thiệu</a></li>
-                    <li><a href="#/stories">Chính Sách Đổi Trả</a></li>
+                    <li><a href="sio-portal/#/home">Trang Chủ</a></li>
+                    <li><a href="sio-portal/#/product">Sản Phẩm</a></li>
+                    <li><a href="sio-portal/#/location">Vị Trí</a></li>
+                    <li><a href="sio-portal/#/stories">Giới Thiệu</a></li>
+                    <li><a href="sio-portal/#/policy">Chính Sách Đổi Trả</a></li>
                 </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <ul class="right-control">
                     <li class="margin-left">
                         <li><input placeholder="Search"></li>
                         <li><div class="btn_search"></div></li>
                     </li>
                     <li class="margin-left"><a href="javascript:void(0)" ng-click="openLoginView()" class="user"></a></li>
-                    <li class="margin-left"><a class="cart" href="#/cart"></a></li>
+                    <li class="margin-left"><a class="cart" href="sio-portal/#/cart"></a></li>
                 </ul>
             </div>
         </div>
@@ -45,9 +45,9 @@
             <h4>THÔNG TIN LIÊN HỆ</h4>
             <ul>
                 <li>Giờ Làm Việc: 7h - 22h</li>
-                <li>87 Nguyễn Sỹ Sách, P15, Tân Bình, HCM</li>
-                <li>Hot-line 1: 0974.964.847</li>
-                <li>Hot-line 2: 0984.292.847</li>
+                <li>87/89/52 Nguyễn Sỹ Sách, P15, Tân Bình, HCM</li>
+                <li>Chủ Shop: 0974.964.847</li>
+                <li>Hot Line: 0984.292.847</li>
                 <li><a href="#">Email: momoshop@gmail.com</a></li>
             </ul>
         </div>
@@ -70,9 +70,9 @@
         <div class="col-md-3">
             <h4>DANH SÁCH CỬA HÀNG</h4>
             <ul>
-                <li><a href="#">Số 1 - Hai Bà Trưng - Q1 - TP.HCM</a></li>
-                <li><a href="#">Số 2 - Lê Duẫn - Q2 - TP.BẾN TRE</a></li>
-                <li><a href="#">Số 3 - Lê Lợi - Q3 - TP.HÀ NỘI </a></li>
+                <li><a href="#">Chi Nhánh Hồ Chí Minh/a></li>
+                <li><a href="#">Chi Nhánh Bến Tre</a></li>
+                <li><a href="#">Chi Nhánh Hà Nội</a></li>
             </ul>
         </div>
     </div>
@@ -86,8 +86,9 @@
     <script src="sio-portal/js/ui-bootstrap-tpls-2.5.0.js"></script>
     <script src="sio-portal/js/app.js"></script>
 
-    <script src="sio-portal/static/directive/shop-by-directive.js"></script>
+    <script src="sio-portal/static/directive/category-directive.js"></script>
     <script src="sio-portal/static/directive/navigation-directive.js"></script>
+    <script src="sio-portal/static/directive/contact-directive.js"></script>
     <script src="sio-portal/static/factory/authorization-factory.js"></script>
     <script src="sio-portal/static/service/api-provider-service.js"></script>
 
@@ -99,6 +100,7 @@
     <script src="sio-portal/static/ui/shopping-cart/shopping-cart.js"></script>
     <script src="sio-portal/static/ui/login/login.js"></script>
     <script src="sio-portal/static/ui/register/register.js"></script>
+    <script src="sio-portal/static/ui/policy/policy.js"></script>
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.1/lodash.js" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbC88CJ-7KMMZs1GLokAPSIwwmk6p6M1A"></script>
