@@ -1,0 +1,1 @@
+var URL_PRODUCTS = "sio-portal/static/json/product.json"

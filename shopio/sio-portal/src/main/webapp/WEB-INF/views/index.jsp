@@ -83,6 +83,7 @@
     <script src="sio-portal/js/agularjs-1.5.8/angular-route.js"></script>
     <script src="sio-portal/js/boostrap-4.0/bootstrap.min.js"></script>
     <script src="sio-portal/js/boostrap-4.0/ui-bootstrap-tpls-2.5.0.js"></script>
+    <script src="sio-portal/js/contants.js"></script>
 
     <script src="sio-portal/js/app.js"></script>
 

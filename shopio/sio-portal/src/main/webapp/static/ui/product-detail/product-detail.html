@@ -5,25 +5,23 @@
         <h4>THÔNG TIN SẢN PHẨM</h4>
         <div class="row">
             <div class="col-md-6">
-            	<img id="mainImage" src="sio-portal/asset/toy-1.jpg"><br>
+            	<img id="mainImage" src="{{product.images[0]}}"><br>
             	<div class="small-images">
 	            	<ul>
-	            		<li><img ng-click="showImageByUrl('sio-portal/asset/toy-1.jpg')" src="sio-portal/asset/toy-1.jpg"></li>
-	            		<li><img ng-click="showImageByUrl('sio-portal/asset/toy-2.jfif')" src="sio-portal/asset/toy-2.jfif"></li>
-	            		<li><img ng-click="showImageByUrl('sio-portal/asset/toy-3.jpg')" src="sio-portal/asset/toy-3.jpg"></li>
-	            		<li><img ng-click="showImageByUrl('sio-portal/asset/toy-4.jfif')" src="sio-portal/asset/toy-4.jfif"></li>
-	            		<li><img ng-click="showImageByUrl('sio-portal/asset/toy-5.jpg')" src="sio-portal/asset/toy-5.jpg"></li>
+	            		<li ng-repeat="image in product.images">
+	            			<img ng-click="showImageByUrl(image)" src="{{image}}">
+	            		</li>
 	            	</ul>
             	</div>
             </div>
             <div class="col-md-6">
                 <ul>
-                    <li><h3>XE CỦI HÌNH HỌC</h3></li>
-                    <li><b>GÍA CỦ: </b><del>40.000 (VND)</del></li>
-                    <li><b>GIÁ KHUYẾN MÃI: </b>35.0000 (VND)</li>
-                    <li><b>XUẤT XỨ: </b>Việt Nam</li>
-                    <li><b>KÍCH THƯỚC: </b>5 x 7 x 8</li>
-                    <li><b>SỐ LƯỢNG HIỆN CÓ: </b>9</li>
+                    <li><h3>{{product.name}}</h3></li>
+                    <li><b>GÍA CỦ: </b><del>{{product.oldPrice}} (VND)</del></li>
+                    <li><b>GIÁ KHUYẾN MÃI: </b>{{product.sellingPrice}} (VND)</li>
+                    <li><b>XUẤT XỨ: </b>{{product.madeIn}}</li>
+                    <li><b>KÍCH THƯỚC: </b>{{product.size}}</li>
+                    <li><b>SỐ LƯỢNG HIỆN CÓ: </b>{{product.currentAmount}}</li>
                     <li><b>SỐ LƯỢNG: </b><input type="number" placeholder="Số Lượng"></li>
                     <li><button class="btn btn-info">CHO VÀO GIỎ HÀNG</button></li>
                 </ul>
@@ -31,10 +29,7 @@
         </div>
         <br/>
         <h4>THÔNG TIN CHI TIẾT</h4>
-        <p>
-            Các chữ được khắc sâu trên một bảng gỗ cứng để bé có thể dễ dàng rà và tìm đúng vị trí của từng chữ. Cảm nhận trực quan bằng tất cả các giác quan giúp cho bé in sâu và trí nhớ nhanh chóng.
-            Bảng chữ cái khối gỗ là hoàn hảo cho trẻ nhỏ vì chúng sẽ thích, đặt đúng ô, xếp chồng, đếm và học các chữ cái khi chơi.
-        </p>
+        <p>{{product.description}}</p>
         <br/>
         <h4>SẢN PHẨM CÙNG LOẠI</h4>
         <div class="related-products">

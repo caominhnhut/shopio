@@ -13,10 +13,10 @@
 		"order": 1,
 		"images": [
 			"sio-portal/static/asset/toy-2.jfif",
-			"sio-portal/asset/toy-2.jpg",
-			"sio-portal/asset/toy-3.jpg",
-			"sio-portal/asset/toy-4.jpg",
-			"sio-portal/asset/toy-5.jpg"
+			"sio-portal/static/asset/toy-2.jpg",
+			"sio-portal/static/asset/toy-3.jpg",
+			"sio-portal/static/asset/toy-4.jpg",
+			"sio-portal/static/asset/toy-5.jpg"
 		],
 		"caterogies": [
 			"DO_CHOI_GO",
